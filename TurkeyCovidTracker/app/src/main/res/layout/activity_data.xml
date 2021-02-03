@@ -1,0 +1,1276 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:id="@+id/drawer"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+tools:context=".DataActivity">
+
+
+
+
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+
+
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        >
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/home_bg"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.39"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            >
+
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:clickable="true"
+                android:onClick="navDraverClicked"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/menu" />
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/search" />
+
+
+            <TextView
+                android:id="@+id/dateText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:fontFamily="@font/bold"
+                android:text="15 March 2021"
+                android:textColor="#0D1333"
+
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+
+                android:fontFamily="@font/bold"
+                android:text="Today"
+                android:textColor="#0D1333"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/dateText" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView5"
+                android:layout_width="0dp"
+                android:layout_height="97dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="16dp"
+                android:background="#FFFFFF"
+                app:cardCornerRadius="4dp"
+                app:layout_constraintBottom_toBottomOf="@+id/cardView6"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/cardView6"
+                app:layout_constraintTop_toTopOf="@+id/cardView6">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/newDeathCount"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:clickable="true"
+                    android:onClick="itemsClicked">
+
+
+                    <ImageView
+                        android:id="@+id/imageView10"
+                        android:layout_width="67dp"
+                        android:layout_height="28dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginBottom="8dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:srcCompat="@drawable/mainline" />
+
+                    <ImageView
+                        android:id="@+id/imageView9"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/new_cases_icon" />
+
+                    <TextView
+                        android:id="@+id/textView4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:fontFamily="@font/regular"
+                        android:text="New Deaths"
+                        android:textColor="#1E2432"
+                        android:textSize="11sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/imageView9"
+                        app:layout_constraintStart_toEndOf="@+id/imageView9"
+                        app:layout_constraintTop_toTopOf="@+id/imageView9" />
+
+                    <TextView
+                        android:id="@+id/newDeathText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/bold"
+                        android:text="52"
+                        android:textColor="#1E2432"
+                        android:textSize="20sp"
+                        app:layout_constraintStart_toStartOf="@+id/imageView9"
+                        app:layout_constraintTop_toBottomOf="@+id/imageView9" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView6"
+                android:layout_width="0dp"
+                android:layout_height="97dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp"
+                android:background="#FFFFFF"
+                app:cardCornerRadius="4dp"
+                app:layout_constraintEnd_toStartOf="@+id/cardView5"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cardView4">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/newPatientCount"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:clickable="true"
+                    android:onClick="itemsClicked">
+
+
+                    <ImageView
+                        android:id="@+id/imageView11"
+                        android:layout_width="67dp"
+                        android:layout_height="28dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginBottom="8dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:srcCompat="@drawable/mainline" />
+
+                    <ImageView
+                        android:id="@+id/imageView8"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/recovered_icon" />
+
+                    <TextView
+                        android:id="@+id/textView3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:fontFamily="@font/regular"
+                        android:text="New Patients"
+                        android:textColor="#1E2432"
+                        android:textSize="11sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/imageView8"
+                        app:layout_constraintStart_toEndOf="@+id/imageView8"
+                        app:layout_constraintTop_toTopOf="@+id/imageView8" />
+
+                    <TextView
+                        android:id="@+id/newPatientText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/bold"
+                        android:text="689"
+                        android:textColor="#1E2432"
+                        android:textSize="20sp"
+                        app:layout_constraintStart_toStartOf="@+id/imageView8"
+                        app:layout_constraintTop_toBottomOf="@+id/imageView8" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView4"
+                android:layout_width="0dp"
+                android:layout_height="97dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:background="#FFFFFF"
+                app:cardCornerRadius="4dp"
+                app:layout_constraintEnd_toStartOf="@+id/cardView3"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView5">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/newTestCount"
+                    android:layout_width="match_parent"
+                    android:layout_height="95dp"
+                    android:clickable="true"
+                    android:onClick="itemsClicked">
+
+                    <ImageView
+                        android:id="@+id/imageView6"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/confirm_icon" />
+
+                    <TextView
+                        android:id="@+id/textView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:fontFamily="@font/regular"
+                        android:text="Number of Tests"
+                        android:textColor="#1E2432"
+                        android:textSize="11sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/imageView6"
+                        app:layout_constraintStart_toEndOf="@+id/imageView6"
+                        app:layout_constraintTop_toTopOf="@+id/imageView6" />
+
+                    <TextView
+                        android:id="@+id/newTestText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/bold"
+                        android:text="1,062"
+                        android:textColor="#1E2432"
+                        android:textSize="20sp"
+                        app:layout_constraintStart_toStartOf="@+id/imageView6"
+                        app:layout_constraintTop_toBottomOf="@+id/imageView6" />
+
+
+                    <ImageView
+                        android:id="@+id/imageView4"
+                        android:layout_width="67dp"
+                        android:layout_height="28dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginBottom="8dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:srcCompat="@drawable/mainline" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView3"
+                android:layout_width="0dp"
+                android:layout_height="97dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="16dp"
+                android:background="#FFFFFF"
+                app:cardCornerRadius="4dp"
+                app:layout_constraintBottom_toBottomOf="@+id/cardView4"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/cardView4"
+                app:layout_constraintTop_toTopOf="@+id/cardView4">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/newCaseCount"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:clickable="true"
+                    android:onClick="itemsClicked">
+
+
+                    <ImageView
+                        android:id="@+id/imageView5"
+                        android:layout_width="67dp"
+                        android:layout_height="28dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginBottom="8dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:srcCompat="@drawable/mainline" />
+
+                    <ImageView
+                        android:id="@+id/imageView7"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/death_icon" />
+
+                    <TextView
+                        android:id="@+id/textView2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:fontFamily="@font/regular"
+                        android:text="New Cases"
+                        android:textColor="#1E2432"
+                        android:textSize="11sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/imageView7"
+                        app:layout_constraintStart_toEndOf="@+id/imageView7"
+                        app:layout_constraintTop_toTopOf="@+id/imageView7" />
+
+                    <TextView
+                        android:id="@+id/newCaseText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/bold"
+                        android:text="75"
+                        android:textColor="#1E2432"
+                        android:textSize="20sp"
+                        app:layout_constraintStart_toStartOf="@+id/imageView7"
+                        app:layout_constraintTop_toBottomOf="@+id/imageView7" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView10"
+                android:layout_width="0dp"
+                android:layout_height="97dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:background="#FFFFFF"
+                app:cardCornerRadius="4dp"
+                app:layout_constraintEnd_toStartOf="@+id/cardView5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cardView6">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/newRecoCount"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:clickable="true"
+                    android:onClick="itemsClicked">
+
+
+                    <ImageView
+                        android:id="@+id/imageView111"
+                        android:layout_width="67dp"
+                        android:layout_height="28dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginBottom="8dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:srcCompat="@drawable/mainline" />
+
+                    <ImageView
+                        android:id="@+id/imageView88"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/confirm_icon" />
+
+                    <TextView
+                        android:id="@+id/textView33"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:fontFamily="@font/regular"
+                        android:text="New Recovered"
+                        android:textColor="#1E2432"
+                        android:textSize="11sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/imageView88"
+                        app:layout_constraintStart_toEndOf="@+id/imageView88"
+                        app:layout_constraintTop_toTopOf="@+id/imageView88" />
+
+                    <TextView
+                        android:id="@+id/newRecoText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/bold"
+                        android:text="689"
+                        android:textColor="#1E2432"
+                        android:textSize="20sp"
+                        app:layout_constraintStart_toStartOf="@+id/imageView88"
+                        app:layout_constraintTop_toBottomOf="@+id/imageView88" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+
+            <TextView
+                android:id="@+id/weekText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/bold"
+                android:text="This Week"
+                android:textColor="#0D1333"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cardView10" />
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView8"
+                android:layout_width="0dp"
+                android:layout_height="97dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:background="#FFFFFF"
+                app:cardCornerRadius="4dp"
+                app:layout_constraintBottom_toBottomOf="@+id/cardView11"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/cardView7">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/VentilatorRate"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:clickable="true"
+                    android:onClick="itemsClicked">
+
+
+                    <ImageView
+                        android:id="@+id/imageView55"
+                        android:layout_width="67dp"
+                        android:layout_height="28dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginBottom="8dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:srcCompat="@drawable/mainline" />
+
+                    <ImageView
+                        android:id="@+id/imageView77"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/new_cases_icon" />
+
+                    <TextView
+                        android:id="@+id/textView22"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:fontFamily="@font/regular"
+                        android:text="Ventilator Rate"
+                        android:textColor="#1E2432"
+                        android:textSize="11sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/imageView77"
+                        app:layout_constraintStart_toEndOf="@+id/imageView77"
+                        app:layout_constraintTop_toTopOf="@+id/imageView77" />
+
+                    <TextView
+                        android:id="@+id/VentilatorText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/bold"
+                        android:text="75"
+                        android:textColor="#1E2432"
+                        android:textSize="20sp"
+                        app:layout_constraintStart_toStartOf="@+id/imageView77"
+                        app:layout_constraintTop_toBottomOf="@+id/imageView77" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView7"
+                android:layout_width="0dp"
+                android:layout_height="97dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:background="#FFFFFF"
+                app:cardCornerRadius="4dp"
+                app:layout_constraintEnd_toEndOf="@+id/cardView10"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/weekText">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/ZaturreRateCount"
+                    android:layout_width="match_parent"
+                    android:layout_height="95dp"
+                    android:clickable="true"
+                    android:onClick="itemsClicked">
+
+                    <ImageView
+                        android:id="@+id/imageView66"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/confirm_icon" />
+
+                    <TextView
+                        android:id="@+id/textVieww"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:fontFamily="@font/regular"
+                        android:text="Rate of Pneumonia"
+                        android:textColor="#1E2432"
+                        android:textSize="11sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/imageView66"
+                        app:layout_constraintStart_toEndOf="@+id/imageView66"
+                        app:layout_constraintTop_toTopOf="@+id/imageView66" />
+
+                    <TextView
+                        android:id="@+id/ZaturreRateText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/bold"
+                        android:text="1,062"
+                        android:textColor="#1E2432"
+                        android:textSize="20sp"
+                        app:layout_constraintStart_toStartOf="@+id/imageView66"
+                        app:layout_constraintTop_toBottomOf="@+id/imageView66" />
+
+
+                    <ImageView
+                        android:id="@+id/ZaturreImage"
+                        android:layout_width="67dp"
+                        android:layout_height="28dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginBottom="8dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:srcCompat="@drawable/mainline" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView11"
+                android:layout_width="0dp"
+                android:layout_height="97dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:background="#FFFFFF"
+                app:cardCornerRadius="4dp"
+                app:layout_constraintEnd_toEndOf="@+id/cardView7"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cardView7">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/IntensiveOccupancyRate"
+                    android:layout_width="match_parent"
+                    android:layout_height="95dp"
+                    android:clickable="true"
+                    android:onClick="itemsClicked">
+
+                    <ImageView
+                        android:id="@+id/imageView67"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/recovered_icon" />
+
+                    <TextView
+                        android:id="@+id/textViewv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:fontFamily="@font/regular"
+                        android:text="Intensive Occupancy Rate"
+                        android:textColor="#1E2432"
+                        android:textSize="11sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/imageView67"
+                        app:layout_constraintStart_toEndOf="@+id/imageView67"
+                        app:layout_constraintTop_toTopOf="@+id/imageView67" />
+
+                    <TextView
+                        android:id="@+id/IntensiveOccupancyText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/bold"
+                        android:text="1,062"
+                        android:textColor="#1E2432"
+                        android:textSize="20sp"
+                        app:layout_constraintStart_toStartOf="@+id/imageView67"
+                        app:layout_constraintTop_toBottomOf="@+id/imageView67" />
+
+
+                    <ImageView
+                        android:id="@+id/IntensiveOccupancyImage"
+                        android:layout_width="67dp"
+                        android:layout_height="28dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginBottom="8dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:srcCompat="@drawable/mainline" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView12"
+                android:layout_width="0dp"
+                android:layout_height="97dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:background="#FFFFFF"
+                app:cardCornerRadius="4dp"
+                app:layout_constraintBottom_toBottomOf="@+id/cardView7"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/cardView7"
+                app:layout_constraintTop_toTopOf="@+id/cardView7">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/bedFillingRatio"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:clickable="true"
+                    android:onClick="itemsClicked">
+
+
+                    <ImageView
+                        android:id="@+id/imageView56"
+                        android:layout_width="67dp"
+                        android:layout_height="28dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginBottom="8dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:srcCompat="@drawable/mainline" />
+
+                    <ImageView
+                        android:id="@+id/imageView78"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/death_icon" />
+
+                    <TextView
+                        android:id="@+id/textView23"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:fontFamily="@font/regular"
+                        android:text="Bed Filling Ratioh"
+                        android:textColor="#1E2432"
+                        android:textSize="11sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/imageView78"
+                        app:layout_constraintStart_toEndOf="@+id/imageView78"
+                        app:layout_constraintTop_toTopOf="@+id/imageView78" />
+
+                    <TextView
+                        android:id="@+id/bedFillingText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/bold"
+                        android:text="75"
+                        android:textColor="#1E2432"
+                        android:textSize="20sp"
+                        app:layout_constraintStart_toStartOf="@+id/imageView78"
+                        app:layout_constraintTop_toBottomOf="@+id/imageView78" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView13"
+                android:layout_width="0dp"
+                android:layout_height="97dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:background="#FFFFFF"
+                app:cardCornerRadius="4dp"
+                app:layout_constraintEnd_toEndOf="@+id/cardView11"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cardView11">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/DetectionTime"
+                    android:layout_width="match_parent"
+                    android:layout_height="95dp"
+                    android:clickable="true"
+                    android:onClick="itemsClicked">
+
+                    <ImageView
+                        android:id="@+id/cardView13image"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/confirm_icon" />
+
+                    <TextView
+                        android:id="@+id/cardView13text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:fontFamily="@font/regular"
+                        android:text="Detection Time"
+                        android:textColor="#1E2432"
+                        android:textSize="11sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/cardView13image"
+                        app:layout_constraintStart_toEndOf="@+id/cardView13image"
+                        app:layout_constraintTop_toTopOf="@+id/cardView13image" />
+
+                    <TextView
+                        android:id="@+id/DetectionText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/bold"
+                        android:text="1,062"
+                        android:textColor="#1E2432"
+                        android:textSize="20sp"
+                        app:layout_constraintStart_toStartOf="@+id/cardView13image"
+                        app:layout_constraintTop_toBottomOf="@+id/cardView13image" />
+
+
+                    <ImageView
+                        android:id="@+id/cardView13image2"
+                        android:layout_width="67dp"
+                        android:layout_height="28dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginBottom="8dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:srcCompat="@drawable/mainline" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView14"
+                android:layout_width="0dp"
+                android:layout_height="97dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:background="#FFFFFF"
+                app:cardCornerRadius="4dp"
+                app:layout_constraintBottom_toBottomOf="@+id/cardView13"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/cardView13"
+                app:layout_constraintTop_toTopOf="@+id/cardView13">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/FilationRate"
+                    android:layout_width="match_parent"
+                    android:layout_height="95dp"
+                    android:clickable="true"
+                    android:onClick="itemsClicked">
+
+                    <ImageView
+                        android:id="@+id/cardView14image"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/death_icon" />
+
+                    <TextView
+                        android:id="@+id/cardView14text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:fontFamily="@font/regular"
+                        android:text="Filation Rate"
+                        android:textColor="#1E2432"
+                        android:textSize="11sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/cardView14image"
+                        app:layout_constraintStart_toEndOf="@+id/cardView14image"
+                        app:layout_constraintTop_toTopOf="@+id/cardView14image" />
+
+                    <TextView
+                        android:id="@+id/FilationRateText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/bold"
+                        android:text="1,062"
+                        android:textColor="#1E2432"
+                        android:textSize="20sp"
+                        app:layout_constraintStart_toStartOf="@+id/cardView14image"
+                        app:layout_constraintTop_toBottomOf="@+id/cardView14image" />
+
+
+                    <ImageView
+                        android:id="@+id/cardView14image2"
+                        android:layout_width="67dp"
+                        android:layout_height="28dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginBottom="8dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:srcCompat="@drawable/mainline" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView15"
+                android:layout_width="0dp"
+                android:layout_height="97dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:background="#FFFFFF"
+                app:cardCornerRadius="4dp"
+                app:layout_constraintEnd_toEndOf="@+id/cardView13"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/totalText">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/totalTestCount"
+                    android:layout_width="match_parent"
+                    android:layout_height="95dp"
+                    android:clickable="true"
+                    android:onClick="itemsClicked">
+
+                    <ImageView
+                        android:id="@+id/cardView15image"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/confirm_icon" />
+
+                    <TextView
+                        android:id="@+id/cardView15text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:fontFamily="@font/regular"
+                        android:text="Total Tests"
+                        android:textColor="#1E2432"
+                        android:textSize="11sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/cardView15image"
+                        app:layout_constraintStart_toEndOf="@+id/cardView15image"
+                        app:layout_constraintTop_toTopOf="@+id/cardView15image" />
+
+                    <TextView
+                        android:id="@+id/totalTestText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/bold"
+                        android:text="1,062"
+                        android:textColor="#1E2432"
+                        android:textSize="20sp"
+                        app:layout_constraintStart_toStartOf="@+id/cardView15image"
+                        app:layout_constraintTop_toBottomOf="@+id/cardView15image" />
+
+
+                    <ImageView
+                        android:id="@+id/cardView15image2"
+                        android:layout_width="67dp"
+                        android:layout_height="28dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginBottom="8dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:srcCompat="@drawable/mainline" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/totalText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/bold"
+                android:text="Total"
+                android:textColor="#0D1333"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cardView13" />
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView16"
+                android:layout_width="0dp"
+                android:layout_height="97dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:background="#FFFFFF"
+                app:cardCornerRadius="4dp"
+                app:layout_constraintBottom_toBottomOf="@+id/cardView15"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/cardView15"
+                app:layout_constraintTop_toTopOf="@+id/cardView15">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/totalCaseCount"
+                    android:layout_width="match_parent"
+                    android:layout_height="95dp"
+                    android:clickable="true"
+                    android:onClick="itemsClicked">
+
+                    <ImageView
+                        android:id="@+id/cardView16image"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/death_icon" />
+
+                    <TextView
+                        android:id="@+id/cardView16text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:fontFamily="@font/regular"
+                        android:text="Total Cases"
+                        android:textColor="#1E2432"
+                        android:textSize="11sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/cardView16image"
+                        app:layout_constraintStart_toEndOf="@+id/cardView16image"
+                        app:layout_constraintTop_toTopOf="@+id/cardView16image" />
+
+                    <TextView
+                        android:id="@+id/totalCaseTest"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/bold"
+                        android:text="1,062"
+                        android:textColor="#1E2432"
+                        android:textSize="20sp"
+                        app:layout_constraintStart_toStartOf="@+id/cardView16image"
+                        app:layout_constraintTop_toBottomOf="@+id/cardView16image" />
+
+
+                    <ImageView
+                        android:id="@+id/cardView16image2"
+                        android:layout_width="67dp"
+                        android:layout_height="28dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginBottom="8dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:srcCompat="@drawable/mainline" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView17"
+                android:layout_width="0dp"
+                android:layout_height="97dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:background="#FFFFFF"
+                app:cardCornerRadius="4dp"
+                app:layout_constraintEnd_toEndOf="@+id/cardView15"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cardView15">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/totalDeathCount"
+                    android:layout_width="match_parent"
+                    android:layout_height="95dp"
+                    android:clickable="true"
+                    android:onClick="itemsClicked">
+
+                    <ImageView
+                        android:id="@+id/cardView17image"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/recovered_icon" />
+
+                    <TextView
+                        android:id="@+id/cardView17text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:fontFamily="@font/regular"
+                        android:text="Total Deaths"
+                        android:textColor="#1E2432"
+                        android:textSize="11sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/cardView17image"
+                        app:layout_constraintStart_toEndOf="@+id/cardView17image"
+                        app:layout_constraintTop_toTopOf="@+id/cardView17image" />
+
+                    <TextView
+                        android:id="@+id/totalDeathText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/bold"
+                        android:text="1,062"
+                        android:textColor="#1E2432"
+                        android:textSize="20sp"
+                        app:layout_constraintStart_toStartOf="@+id/cardView17image"
+                        app:layout_constraintTop_toBottomOf="@+id/cardView17image" />
+
+
+                    <ImageView
+                        android:id="@+id/cardView17image2"
+                        android:layout_width="67dp"
+                        android:layout_height="28dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginBottom="8dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:srcCompat="@drawable/mainline" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView18"
+                android:layout_width="0dp"
+                android:layout_height="97dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:background="#FFFFFF"
+                app:cardCornerRadius="4dp"
+                app:layout_constraintBottom_toBottomOf="@+id/cardView17"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/cardView17"
+                app:layout_constraintTop_toTopOf="@+id/cardView17">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/totalHighPatientCount"
+                    android:layout_width="match_parent"
+                    android:layout_height="95dp"
+                    android:clickable="true"
+                    android:onClick="itemsClicked">
+
+                    <ImageView
+                        android:id="@+id/cardView18image"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/new_cases_icon" />
+
+                    <TextView
+                        android:id="@+id/cardView18text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:fontFamily="@font/regular"
+                        android:text="Heavy Patients"
+                        android:textColor="#1E2432"
+                        android:textSize="11sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/cardView18image"
+                        app:layout_constraintStart_toEndOf="@+id/cardView18image"
+                        app:layout_constraintTop_toTopOf="@+id/cardView18image" />
+
+                    <TextView
+                        android:id="@+id/totalHighPatientText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/bold"
+                        android:text="1,062"
+                        android:textColor="#1E2432"
+                        android:textSize="20sp"
+                        app:layout_constraintStart_toStartOf="@+id/cardView18image"
+                        app:layout_constraintTop_toBottomOf="@+id/cardView18image" />
+
+
+                    <ImageView
+                        android:id="@+id/cardView18image2"
+                        android:layout_width="67dp"
+                        android:layout_height="28dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginBottom="8dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:srcCompat="@drawable/mainline" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView19"
+                android:layout_width="0dp"
+                android:layout_height="97dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="50dp"
+                android:background="#FFFFFF"
+                app:cardCornerRadius="4dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/cardView15"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cardView17">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/totalRecoveredCount"
+                    android:layout_width="match_parent"
+                    android:layout_height="95dp"
+                    android:clickable="true"
+                    android:onClick="itemsClicked">
+
+                    <ImageView
+                        android:id="@+id/cardView19image"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/confirm_icon" />
+
+                    <TextView
+                        android:id="@+id/cardView19text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:fontFamily="@font/regular"
+                        android:text="Total Cases"
+                        android:textColor="#1E2432"
+                        android:textSize="11sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/cardView19image"
+                        app:layout_constraintStart_toEndOf="@+id/cardView19image"
+                        app:layout_constraintTop_toTopOf="@+id/cardView19image" />
+
+                    <TextView
+                        android:id="@+id/totalRecoveredText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/bold"
+                        android:text="1,062"
+                        android:textColor="#1E2432"
+                        android:textSize="20sp"
+                        app:layout_constraintStart_toStartOf="@+id/cardView19image"
+                        app:layout_constraintTop_toBottomOf="@+id/cardView19image" />
+
+
+                    <ImageView
+                        android:id="@+id/cardView19image2"
+                        android:layout_width="67dp"
+                        android:layout_height="28dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginBottom="8dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:srcCompat="@drawable/mainline" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
+
+
+    <com.google.android.material.navigation.NavigationView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:id="@+id/navmenu"
+        app:menu="@menu/activity_main_drawer"
+        app:headerLayout="@layout/navheader"
+        android:layout_gravity="start"/>
+
+</androidx.drawerlayout.widget.DrawerLayout >
