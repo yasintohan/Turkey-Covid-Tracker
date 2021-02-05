@@ -15,6 +15,7 @@ import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.anychart.AnyChart;
 import com.anychart.AnyChartView;
@@ -26,10 +27,16 @@ import com.anychart.enums.Anchor;
 import com.anychart.enums.HoverMode;
 import com.anychart.enums.Position;
 import com.anychart.enums.TooltipPositionMode;
+import com.anychart.scales.DateTime;
 import com.google.android.material.navigation.NavigationView;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class Details extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     CovidTracker covidTracker;
@@ -37,9 +44,12 @@ public class Details extends AppCompatActivity implements NavigationView.OnNavig
     public static TextView mainCountText;
     public static TextView mainText;
     public static TextView mainRateText;
+    public static TextView weeklyRateText;
+    public static TextView monthlyRateText;
+
     public static CovidInfoItem covidItem;
     public static List<CovidInfoItem> itemList = new ArrayList<CovidInfoItem>();;
-
+    Calendar calendar;
 
     DrawerLayout drawerLayout;
     NavigationView navigationView;
@@ -53,6 +63,8 @@ public class Details extends AppCompatActivity implements NavigationView.OnNavig
         mainCountText = (TextView) findViewById(R.id.mainCount);
         mainText = (TextView) findViewById(R.id.textView18);
         mainRateText = (TextView) findViewById(R.id.textView25);
+        weeklyRateText = (TextView) findViewById(R.id.textView21);
+        monthlyRateText = (TextView) findViewById(R.id.textView23);
 
 
         drawerLayout = findViewById(R.id.drawer);
@@ -72,21 +84,36 @@ public class Details extends AppCompatActivity implements NavigationView.OnNavig
         covidTracker.execute();
         covidItem = itemList.get(0);
 
+        setCalenderDate(covidItem.getDate());
+
 
         AnyChartView anyChartView = findViewById(R.id.imageView17);
 
         Cartesian cartesian = AnyChart.column();
         List<DataEntry> data = new ArrayList<>();
 
-        float mainRate;
+
+
+
+
+
+
+
+
+        float mainRate = 0;
+        float weeklyRate = 0;
+        float monthlyRate = 0;
+        weeklyRate = getWeeklyRate(clicked);
+        monthlyRate = getMonthlyRate(clicked);
+
         switch (Details.clicked) {
             case 1:
                 mainCountText.setText(covidItem.getTotalCase());
                 mainText.setText("Total Cases");
 
                 mainRate = getRate(itemList.get(0).getTotalCase(),itemList.get(1).getTotalCase());
-                mainRateText.setText(mainRate+"%");
-                mainRateText.setTextColor((mainRate < 0) ? Color.parseColor("#8F0000") : Color.parseColor("#0D8E53"));
+
+
                 data.clear();
                 for(int i = 6; i >= 0; i--) {
                     String veri = itemList.get(i).getTotalCase();
@@ -101,9 +128,9 @@ public class Details extends AppCompatActivity implements NavigationView.OnNavig
                 mainCountText.setText(covidItem.getTotalDeath());
                 mainText.setText("Total Deaths");
 
+
                 mainRate = getRate(itemList.get(0).getTotalDeath(),itemList.get(1).getTotalDeath());
-                mainRateText.setText(mainRate+"%");
-                mainRateText.setTextColor((mainRate < 0) ? Color.parseColor("#8F0000") : Color.parseColor("#0D8E53"));
+
                 data.clear();
                 for(int i = 6; i >= 0; i--) {
                     String veri = itemList.get(i).getTotalDeath();
@@ -117,8 +144,7 @@ public class Details extends AppCompatActivity implements NavigationView.OnNavig
 
 
                 mainRate = getRate(itemList.get(0).getTotalRecovered(),itemList.get(1).getTotalRecovered());
-                mainRateText.setText(mainRate+"%");
-                mainRateText.setTextColor((mainRate < 0) ? Color.parseColor("#8F0000") : Color.parseColor("#0D8E53"));
+
                 data.clear();
                 for(int i = 6; i >= 0; i--) {
                     String veri = itemList.get(i).getTotalRecovered();
@@ -131,9 +157,9 @@ public class Details extends AppCompatActivity implements NavigationView.OnNavig
                 mainCountText.setText(covidItem.getDailyCase());
                 mainText.setText("Daily Cases");
 
+
                 mainRate = getRate(itemList.get(0).getDailyCase(),itemList.get(1).getDailyCase());
-                mainRateText.setText(mainRate+"%");
-                mainRateText.setTextColor((mainRate < 0) ? Color.parseColor("#8F0000") : Color.parseColor("#0D8E53"));
+
                 data.clear();
                 for(int i = 6; i >= 0; i--) {
                     String veri = itemList.get(i).getDailyCase();
@@ -146,9 +172,10 @@ public class Details extends AppCompatActivity implements NavigationView.OnNavig
                 mainCountText.setText(covidItem.getDailyTest());
                 mainText.setText("Daily Test");
 
+
+
                 mainRate = getRate(itemList.get(0).getDailyTest(),itemList.get(1).getDailyTest());
-                mainRateText.setText(mainRate+"%");
-                mainRateText.setTextColor((mainRate < 0) ? Color.parseColor("#8F0000") : Color.parseColor("#0D8E53"));
+
                 data.clear();
                 for(int i = 6; i >= 0; i--) {
                     String veri = itemList.get(i).getDailyTest();
@@ -161,9 +188,9 @@ public class Details extends AppCompatActivity implements NavigationView.OnNavig
                 mainCountText.setText(covidItem.getDailyPatient());
                 mainText.setText("Daily Patient");
 
+
                 mainRate = getRate(itemList.get(0).getDailyPatient(),itemList.get(1).getDailyPatient());
-                mainRateText.setText(mainRate+"%");
-                mainRateText.setTextColor((mainRate < 0) ? Color.parseColor("#8F0000") : Color.parseColor("#0D8E53"));
+
                 data.clear();
                 for(int i = 6; i >= 0; i--) {
                     String veri = itemList.get(i).getDailyPatient();
@@ -176,9 +203,10 @@ public class Details extends AppCompatActivity implements NavigationView.OnNavig
                 mainCountText.setText(covidItem.getDailyDeath());
                 mainText.setText("Daily Deaths");
 
+
+
                 mainRate = getRate(itemList.get(0).getDailyDeath(),itemList.get(1).getDailyDeath());
-                mainRateText.setText(mainRate+"%");
-                mainRateText.setTextColor((mainRate < 0) ? Color.parseColor("#8F0000") : Color.parseColor("#0D8E53"));
+
                 data.clear();
                 for(int i = 6; i >= 0; i--) {
                     String veri = itemList.get(i).getDailyDeath();
@@ -191,9 +219,10 @@ public class Details extends AppCompatActivity implements NavigationView.OnNavig
                 mainCountText.setText(covidItem.getDailyRecovered());
                 mainText.setText("Daily Recovered");
 
+
+
                 mainRate = getRate(itemList.get(0).getDailyRecovered(),itemList.get(1).getDailyRecovered());
-                mainRateText.setText(mainRate+"%");
-                mainRateText.setTextColor((mainRate < 0) ? Color.parseColor("#8F0000") : Color.parseColor("#0D8E53"));
+
                 data.clear();
                 for(int i = 6; i >= 0; i--) {
                     String veri = itemList.get(i).getDailyRecovered();
@@ -206,9 +235,9 @@ public class Details extends AppCompatActivity implements NavigationView.OnNavig
                 mainCountText.setText(covidItem.getTotalTest());
                 mainText.setText("Total Tests");
 
+
                 mainRate = getRate(itemList.get(0).getTotalTest(),itemList.get(1).getTotalTest());
-                mainRateText.setText(mainRate+"%");
-                mainRateText.setTextColor((mainRate < 0) ? Color.parseColor("#8F0000") : Color.parseColor("#0D8E53"));
+
                 data.clear();
                 for(int i = 6; i >= 0; i--) {
                     String veri = itemList.get(i).getTotalTest();
@@ -221,9 +250,10 @@ public class Details extends AppCompatActivity implements NavigationView.OnNavig
                 mainCountText.setText(covidItem.getHeavyPatients());
                 mainText.setText("Heavy Patients");
 
+
+
                 mainRate = getRate(itemList.get(0).getHeavyPatients(),itemList.get(1).getHeavyPatients());
-                mainRateText.setText(mainRate+"%");
-                mainRateText.setTextColor((mainRate < 0) ? Color.parseColor("#8F0000") : Color.parseColor("#0D8E53"));
+
                 data.clear();
                 for(int i = 6; i >= 0; i--) {
                     String veri = itemList.get(i).getHeavyPatients();
@@ -238,9 +268,10 @@ public class Details extends AppCompatActivity implements NavigationView.OnNavig
                 mainCountText.setText(covidItem.getZaturreRate());
                 mainText.setText("Rate of Pneumonia");
 
+
                 mainRate = getRate(itemList.get(0).getZaturreRate(),itemList.get(1).getZaturreRate());
-                mainRateText.setText(mainRate+"%");
-                mainRateText.setTextColor((mainRate < 0) ? Color.parseColor("#8F0000") : Color.parseColor("#0D8E53"));
+
+
                 data.clear();
                 for(int i = 6; i >= 0; i--) {
                     String veri = itemList.get(i).getZaturreRate();
@@ -254,8 +285,7 @@ public class Details extends AppCompatActivity implements NavigationView.OnNavig
                 mainText.setText("Bed Filling Ratio");
 
                 mainRate = getRate(itemList.get(0).getBedOccupancy(),itemList.get(1).getBedOccupancy());
-                mainRateText.setText(mainRate+"%");
-                mainRateText.setTextColor((mainRate < 0) ? Color.parseColor("#8F0000") : Color.parseColor("#0D8E53"));
+
                 data.clear();
                 for(int i = 6; i >= 0; i--) {
                     String veri = itemList.get(i).getBedOccupancy();
@@ -269,9 +299,9 @@ public class Details extends AppCompatActivity implements NavigationView.OnNavig
                 mainCountText.setText(covidItem.getIntensiveOccupancyRate());
                 mainText.setText("Intensive Care Occupancy Rate");
 
+
                 mainRate = getRate(itemList.get(0).getIntensiveOccupancyRate(),itemList.get(1).getIntensiveOccupancyRate());
-                mainRateText.setText(mainRate+"%");
-                mainRateText.setTextColor((mainRate < 0) ? Color.parseColor("#8F0000") : Color.parseColor("#0D8E53"));
+
                 data.clear();
                 for(int i = 6; i >= 0; i--) {
                     String veri = itemList.get(i).getIntensiveOccupancyRate();
@@ -284,9 +314,9 @@ public class Details extends AppCompatActivity implements NavigationView.OnNavig
                 mainCountText.setText(covidItem.getVentilatorRate());
                 mainText.setText("Ventilator Rate");
 
+
                 mainRate = getRate(itemList.get(0).getVentilatorRate(),itemList.get(1).getVentilatorRate());
-                mainRateText.setText(mainRate+"%");
-                mainRateText.setTextColor((mainRate < 0) ? Color.parseColor("#8F0000") : Color.parseColor("#0D8E53"));
+
                 data.clear();
                 for(int i = 6; i >= 0; i--) {
                     String veri = itemList.get(i).getVentilatorRate();
@@ -300,9 +330,9 @@ public class Details extends AppCompatActivity implements NavigationView.OnNavig
                 mainCountText.setText(covidItem.getDetectionTime() + " Hours");
                 mainText.setText("Detection Time");
 
+
                 mainRate = getRate(itemList.get(0).getDetectionTime(),itemList.get(1).getDetectionTime());
-                mainRateText.setText(mainRate+"%");
-                mainRateText.setTextColor((mainRate < 0) ? Color.parseColor("#8F0000") : Color.parseColor("#0D8E53"));
+
                 data.clear();
                 for(int i = 6; i >= 0; i--) {
                     String veri = itemList.get(i).getDetectionTime();
@@ -316,9 +346,9 @@ public class Details extends AppCompatActivity implements NavigationView.OnNavig
                 mainCountText.setText(covidItem.getFilationRate());
                 mainText.setText("Filation Rate");
 
+
                 mainRate = getRate(itemList.get(0).getFilationRate(),itemList.get(1).getFilationRate());
-                mainRateText.setText(mainRate+"%");
-                mainRateText.setTextColor((mainRate < 0) ? Color.parseColor("#8F0000") : Color.parseColor("#0D8E53"));
+
                 data.clear();
                 for(int i = 6; i >= 0; i--) {
                     String veri = itemList.get(i).getFilationRate();
@@ -331,6 +361,17 @@ public class Details extends AppCompatActivity implements NavigationView.OnNavig
                 mainCountText.setText(covidItem.getTotalCase());
                 break;
         }
+
+
+        weeklyRateText.setText(String.format("%.2f", weeklyRate) + "%");
+        weeklyRateText.setTextColor((weeklyRate < 0) ? Color.parseColor("#8F0000") : Color.parseColor("#0D8E53"));
+
+
+        monthlyRateText.setText(String.format("%.2f", monthlyRate)+"%");
+        monthlyRateText.setTextColor((monthlyRate < 0) ? Color.parseColor("#8F0000") : Color.parseColor("#0D8E53"));
+
+        mainRateText.setText(String.format("%.2f", mainRate)+"%");
+        mainRateText.setTextColor((mainRate < 0) ? Color.parseColor("#8F0000") : Color.parseColor("#0D8E53"));
 
 
 
@@ -409,6 +450,319 @@ public class Details extends AppCompatActivity implements NavigationView.OnNavig
 
         return mainRate;
     }
+
+
+
+    public float getWeeklyRate(int dataId) {
+        float weeklyRate = 0;
+
+
+        int dayCount = 0;
+            dayCount = calendar.get(Calendar.DAY_OF_WEEK);
+            dayCount -= 1;
+
+
+
+        if(dayCount>0) {
+            float thisWeekTotal = 0;
+            for (int i = 0; i < dayCount; i++) {
+                String itemData;
+                switch (dataId) {
+                    case 1:
+                        itemData = itemList.get(i).getTotalCase();
+                        break;
+                    case 2:
+                        itemData = itemList.get(i).getTotalDeath();
+                        break;
+                    case 3:
+                        itemData = itemList.get(i).getTotalRecovered();
+                        break;
+                    case 4:
+                        itemData = itemList.get(i).getDailyCase();
+                        break;
+                    case 5:
+                        itemData = itemList.get(i).getDailyTest();
+                        break;
+                    case 6:
+                        itemData = itemList.get(i).getDailyPatient();
+                        break;
+                    case 7:
+                        itemData = itemList.get(i).getDailyDeath();
+                        break;
+                    case 8:
+                        itemData = itemList.get(i).getDailyRecovered();
+                        break;
+                    case 9:
+                        itemData = itemList.get(i).getTotalTest();
+                        break;
+                    case 10:
+                        itemData = itemList.get(i).getHeavyPatients();
+                        break;
+                    case 11:
+                        itemData = itemList.get(i).getZaturreRate();
+                        break;
+                    case 12:
+                        itemData = itemList.get(i).getBedOccupancy();
+                        break;
+                    case 13:
+                        itemData = itemList.get(i).getIntensiveOccupancyRate();
+                        break;
+                    case 14:
+                        itemData = itemList.get(i).getVentilatorRate();
+                        break;
+                    case 15:
+                        itemData = itemList.get(i).getDetectionTime();
+                        break;
+                    case 16:
+                        itemData = itemList.get(i).getFilationRate();
+                        break;
+                    default:
+                        itemData = itemList.get(i).getTotalCase();
+                        break;
+                }
+                itemData = itemData.replace(".", "");
+                itemData = itemData.replace(",", ".");
+                thisWeekTotal += Float.parseFloat(itemData);
+            }
+            float thisWeekRate = thisWeekTotal / dayCount;
+
+            float lastWeekTotal = 0;
+            for (int i = dayCount; i < (dayCount + 7); i++) {
+                String itemData;
+                switch (dataId) {
+                    case 1:
+                        itemData = itemList.get(i).getTotalCase();
+                        break;
+                    case 2:
+                        itemData = itemList.get(i).getTotalDeath();
+                        break;
+                    case 3:
+                        itemData = itemList.get(i).getTotalRecovered();
+                        break;
+                    case 4:
+                        itemData = itemList.get(i).getDailyCase();
+                        break;
+                    case 5:
+                        itemData = itemList.get(i).getDailyTest();
+                        break;
+                    case 6:
+                        itemData = itemList.get(i).getDailyPatient();
+                        break;
+                    case 7:
+                        itemData = itemList.get(i).getDailyDeath();
+                        break;
+                    case 8:
+                        itemData = itemList.get(i).getDailyRecovered();
+                        break;
+                    case 9:
+                        itemData = itemList.get(i).getTotalTest();
+                        break;
+                    case 10:
+                        itemData = itemList.get(i).getHeavyPatients();
+                        break;
+                    case 11:
+                        itemData = itemList.get(i).getZaturreRate();
+                        break;
+                    case 12:
+                        itemData = itemList.get(i).getBedOccupancy();
+                        break;
+                    case 13:
+                        itemData = itemList.get(i).getIntensiveOccupancyRate();
+                        break;
+                    case 14:
+                        itemData = itemList.get(i).getVentilatorRate();
+                        break;
+                    case 15:
+                        itemData = itemList.get(i).getDetectionTime();
+                        break;
+                    case 16:
+                        itemData = itemList.get(i).getFilationRate();
+                        break;
+                    default:
+                        itemData = itemList.get(i).getTotalCase();
+                        break;
+                }
+                itemData = itemData.replace(".", "");
+                itemData = itemData.replace(",", ".");
+                lastWeekTotal += Float.parseFloat(itemData);
+            }
+            float lastWeekRate = lastWeekTotal / 7;
+
+            weeklyRate = (thisWeekRate-lastWeekRate) / lastWeekRate * 100;
+
+        }
+
+        return weeklyRate;
+    }
+
+
+
+    public float getMonthlyRate(int dataId){
+        float monthlyRate = 0;
+        int monthCount = 0;
+        int dayCounter = 0;
+        monthCount = calendar.get(Calendar.MONTH);
+        monthCount += 1;
+        int testMonth = monthCount;
+
+        float thismonth = 0;
+        float lastmonth = 0;
+
+        int i = 0;
+        while(testMonth == monthCount) {
+
+            String itemData;
+            switch (dataId) {
+                case 1:
+                    itemData = itemList.get(i).getTotalCase();
+                    break;
+                case 2:
+                    itemData = itemList.get(i).getTotalDeath();
+                    break;
+                case 3:
+                    itemData = itemList.get(i).getTotalRecovered();
+                    break;
+                case 4:
+                    itemData = itemList.get(i).getDailyCase();
+                    break;
+                case 5:
+                    itemData = itemList.get(i).getDailyTest();
+                    break;
+                case 6:
+                    itemData = itemList.get(i).getDailyPatient();
+                    break;
+                case 7:
+                    itemData = itemList.get(i).getDailyDeath();
+                    break;
+                case 8:
+                    itemData = itemList.get(i).getDailyRecovered();
+                    break;
+                case 9:
+                    itemData = itemList.get(i).getTotalTest();
+                    break;
+                case 10:
+                    itemData = itemList.get(i).getHeavyPatients();
+                    break;
+                case 11:
+                    itemData = itemList.get(i).getZaturreRate();
+                    break;
+                case 12:
+                    itemData = itemList.get(i).getBedOccupancy();
+                    break;
+                case 13:
+                    itemData = itemList.get(i).getIntensiveOccupancyRate();
+                    break;
+                case 14:
+                    itemData = itemList.get(i).getVentilatorRate();
+                    break;
+                case 15:
+                    itemData = itemList.get(i).getDetectionTime();
+                    break;
+                case 16:
+                    itemData = itemList.get(i).getFilationRate();
+                    break;
+                default:
+                    itemData = itemList.get(i).getTotalCase();
+                    break;
+            }
+            itemData = itemData.replace(".", "");
+            itemData = itemData.replace(",", ".");
+            thismonth += Float.parseFloat(itemData);
+            dayCounter++;
+            i++;
+            setCalenderDate(itemList.get(i).getDate());
+            monthCount = calendar.get(Calendar.MONTH) + 1;
+
+
+        }
+        thismonth = thismonth/dayCounter;
+        dayCounter = 0;
+
+        while(monthCount == (testMonth-1)) {
+
+            String itemData;
+            switch (dataId) {
+                case 1:
+                    itemData = itemList.get(i).getTotalCase();
+                    break;
+                case 2:
+                    itemData = itemList.get(i).getTotalDeath();
+                    break;
+                case 3:
+                    itemData = itemList.get(i).getTotalRecovered();
+                    break;
+                case 4:
+                    itemData = itemList.get(i).getDailyCase();
+                    break;
+                case 5:
+                    itemData = itemList.get(i).getDailyTest();
+                    break;
+                case 6:
+                    itemData = itemList.get(i).getDailyPatient();
+                    break;
+                case 7:
+                    itemData = itemList.get(i).getDailyDeath();
+                    break;
+                case 8:
+                    itemData = itemList.get(i).getDailyRecovered();
+                    break;
+                case 9:
+                    itemData = itemList.get(i).getTotalTest();
+                    break;
+                case 10:
+                    itemData = itemList.get(i).getHeavyPatients();
+                    break;
+                case 11:
+                    itemData = itemList.get(i).getZaturreRate();
+                    break;
+                case 12:
+                    itemData = itemList.get(i).getBedOccupancy();
+                    break;
+                case 13:
+                    itemData = itemList.get(i).getIntensiveOccupancyRate();
+                    break;
+                case 14:
+                    itemData = itemList.get(i).getVentilatorRate();
+                    break;
+                case 15:
+                    itemData = itemList.get(i).getDetectionTime();
+                    break;
+                case 16:
+                    itemData = itemList.get(i).getFilationRate();
+                    break;
+                default:
+                    itemData = itemList.get(i).getTotalCase();
+                    break;
+            }
+            itemData = itemData.replace(".", "");
+            itemData = itemData.replace(",", ".");
+            lastmonth += Float.parseFloat(itemData);
+            dayCounter++;
+            i++;
+            setCalenderDate(itemList.get(i).getDate());
+            monthCount = calendar.get(Calendar.MONTH)+ 1;
+
+        }
+        lastmonth = lastmonth/dayCounter;
+
+        monthlyRate = (thismonth-lastmonth) / lastmonth * 100;
+        return monthlyRate;
+    }
+
+
+    public void setCalenderDate(String date) {
+        calendar = Calendar.getInstance();
+        date = date.replace(".","/");
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        try {
+            calendar.setTime(sdf.parse(date));
+
+        } catch (ParseException e) {
+            Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT).show();
+            e.printStackTrace();
+        }
+    }
+
 
 
 }
