@@ -14,16 +14,24 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.google.android.material.navigation.NavigationView;
+import com.levitnudi.legacytableview.LegacyTableView;
 
-public class SettingsActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+import java.util.ArrayList;
+import java.util.List;
+
+
+
+public class TableDataActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     ActionBarDrawerToggle toggle;
+    public static List<CovidInfoItem> itemList = new ArrayList<CovidInfoItem>();;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_settings);
-
+        setContentView(R.layout.activity_table_data);
 
         drawerLayout = findViewById(R.id.drawer);
         navigationView = findViewById(R.id.navmenu);
@@ -33,6 +41,35 @@ public class SettingsActivity extends AppCompatActivity implements NavigationVie
         toggle.setDrawerIndicatorEnabled(true);
         navigationView.setNavigationItemSelectedListener(this);
         toggle.syncState();
+
+
+        itemList = DataActivity.itemList;
+
+
+        //set table title labels
+        LegacyTableView.insertLegacyTitle("Date", "Daily Test", "Daily Case", "Daily Patient", "Daily Death", "Daily Recovered", "Total Test", "Total Case", "Total Death", "Total Recovered", "Heavy Patients","Rate of Pneumonia", "Bed Filling Ratio","Intensive Occupancy Rate", "Ventilator Rate", "Detection Time", "Filation Rate");
+        //set table contents as string arrays
+        for (CovidInfoItem item : itemList) {
+            LegacyTableView.insertLegacyContent(item.getDate(),item.getDailyTest(),item.getDailyCase(),item.getDailyPatient(),item.getDailyDeath(),item.getDailyRecovered(),
+                    item.getTotalTest(),item.getTotalCase(),item.getTotalDeath(),item.getTotalRecovered(),item.getHeavyPatients(),
+                    item.getZaturreRate()+"%",item.getBedOccupancy()+"%",item.getIntensiveOccupancyRate()+"%",item.getVentilatorRate()+"%",item.getDetectionTime()+"Hours",item.getFilationRate()+"%");
+
+        }
+
+
+
+        LegacyTableView legacyTableView = (LegacyTableView)findViewById(R.id.legacy_table_view);
+        legacyTableView.setTitle(LegacyTableView.readLegacyTitle());
+        legacyTableView.setContent(LegacyTableView.readLegacyContent());
+        legacyTableView.setTheme(10);
+        legacyTableView.setHeaderBackgroundLinearGradientBOTTOM("#0D8E53");
+        legacyTableView.setHeaderBackgroundLinearGradientTOP("#0D8E53");
+
+        legacyTableView.setTablePadding(7);
+
+        legacyTableView.build();
+
+
 
     }
 
@@ -55,14 +92,14 @@ public class SettingsActivity extends AppCompatActivity implements NavigationVie
                 Intent s= new Intent(this, SettingsActivity.class);
                 startActivity(s);
                 break;
-            case R.id.nav_table:
-                Intent t= new Intent(this, TableDataActivity.class);
-                startActivity(t);
-                break;
             case R.id.nav_profile:
                 Uri uriProfile = Uri.parse("https://github.com/yasintohan");
                 Intent intentUri = new Intent(Intent.ACTION_VIEW, uriProfile);
                 startActivity(intentUri);
+                break;
+            case R.id.nav_table:
+                Intent t= new Intent(this, TableDataActivity.class);
+                startActivity(t);
                 break;
             case R.id.nav_github:
                 Uri uriGithub = Uri.parse("https://github.com/yasintohan/Turkey-Covid-Tracker");
@@ -85,6 +122,7 @@ public class SettingsActivity extends AppCompatActivity implements NavigationVie
     {
         drawerLayout.openDrawer(Gravity.LEFT);
     }
+
 
 
 }

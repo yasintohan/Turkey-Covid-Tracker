@@ -16,6 +16,10 @@
             android:id="@+id/nav_vaccine"
             android:icon="@drawable/ic_security"
             android:title="@string/menu_vaccine" />
+        <item
+            android:id="@+id/nav_table"
+            android:icon="@drawable/ic_table_view"
+            android:title="@string/menu_table" />
     </group>
 
     <item android:title="Communicate">

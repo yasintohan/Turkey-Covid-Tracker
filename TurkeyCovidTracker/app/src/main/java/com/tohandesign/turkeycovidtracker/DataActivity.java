@@ -137,6 +137,10 @@ public class DataActivity extends AppCompatActivity implements NavigationView.On
                 Intent intentUri = new Intent(Intent.ACTION_VIEW, uriProfile);
                 startActivity(intentUri);
                 break;
+            case R.id.nav_table:
+                Intent t= new Intent(this, TableDataActivity.class);
+                startActivity(t);
+                break;
             case R.id.nav_github:
                 Uri uriGithub = Uri.parse("https://github.com/yasintohan/Turkey-Covid-Tracker");
                 Intent intentGit = new Intent(Intent.ACTION_VIEW, uriGithub);

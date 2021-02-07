@@ -415,6 +415,10 @@ public class Details extends AppCompatActivity implements NavigationView.OnNavig
                 Intent intentUri = new Intent(Intent.ACTION_VIEW, uriProfile);
                 startActivity(intentUri);
                 break;
+            case R.id.nav_table:
+                Intent t= new Intent(this, TableDataActivity.class);
+                startActivity(t);
+                break;
             case R.id.nav_github:
                 Uri uriGithub = Uri.parse("https://github.com/yasintohan/Turkey-Covid-Tracker");
                 Intent intentGit = new Intent(Intent.ACTION_VIEW, uriGithub);
@@ -678,7 +682,7 @@ public class Details extends AppCompatActivity implements NavigationView.OnNavig
         thismonth = thismonth/dayCounter;
         dayCounter = 0;
 
-        while(monthCount == (testMonth-1)) {
+        while((monthCount == (testMonth-1) || ((testMonth-1) == 0 && monthCount == 12))) {
 
             String itemData;
             switch (dataId) {

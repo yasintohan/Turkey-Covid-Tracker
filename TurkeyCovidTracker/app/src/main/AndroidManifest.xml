@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TurkeyCovidTracker">
-        <activity android:name=".SettingsActivity"></activity>
+        <activity android:name=".TableDataActivity"></activity>
+        <activity android:name=".SettingsActivity" />
         <activity android:name=".DataActivity" />
         <activity android:name=".Details" />
         <activity android:name=".MainActivity">
