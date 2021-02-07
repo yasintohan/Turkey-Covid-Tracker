@@ -5,10 +5,10 @@
 <br/>
 <img src = "/images/3.png" height="50%" width="50%"><img src = "/images/4.png" height="50%" width="50%">
 <br/>
-<img src = "/images/6.png" height="50%" width="50%"><img src = "/images/5.png" height="50%" width="50%">
+<img src = "/images/6.png" height="50%" width="50%"><img src = "/images/7.png" height="50%" width="50%">
 <br/>
-
-
+<img src = "/images/5.png" height="50%" width="50%">
+<br/>
 
 ## Description
 

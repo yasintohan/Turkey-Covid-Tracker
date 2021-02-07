@@ -1,66 +1,42 @@
 package com.tohandesign.turkeycovidtracker;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.MenuItem;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.TextView;
 
-import org.jsoup.Jsoup;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
+import com.google.android.material.navigation.NavigationView;
+import com.levitnudi.legacytableview.LegacyTableView;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
+public class VaccineActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.MenuItem;
-import android.widget.Toast;
-
-import com.google.android.material.navigation.NavigationView;
-
-
-
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     ActionBarDrawerToggle toggle;
 
+    public static TextView mainCountText;
 
-    VaccineTracker vaccineTracker;
-    CovidTracker covidTracker;
-    public static TextView totalDeathText;
-    public static TextView totalCaseText;
-    public static TextView totalRecoveredText;
-    public static TextView dailyCaseText;
+    public static int vaccineCount = 0;
+    public static List<VaccineItem> itemList = new ArrayList<VaccineItem>();
 
-    public static TextView dateText;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        totalDeathText = (TextView) findViewById(R.id.totalDeath);
-        totalCaseText = (TextView) findViewById(R.id.totalCase);
-        totalRecoveredText = (TextView) findViewById(R.id.totalRecovered);
-        dailyCaseText = (TextView) findViewById(R.id.dailyCase);
-        dateText = (TextView) findViewById(R.id.dateText);
-
+        setContentView(R.layout.activity_vaccine);
 
         drawerLayout = findViewById(R.id.drawer);
         navigationView = findViewById(R.id.navmenu);
@@ -71,56 +47,35 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setNavigationItemSelectedListener(this);
         toggle.syncState();
 
+        mainCountText = (TextView) findViewById(R.id.mainCount);
+        mainCountText.setText(String.valueOf(vaccineCount));
+
+        LegacyTableView.insertLegacyTitle("City", "Number vaccinated");
+
+
+        for(VaccineItem item : VaccineTracker.itemList) {
+            LegacyTableView.insertLegacyContent(item.getCityName(), String.valueOf(item.getValue()));
+
+        }
 
 
 
 
 
-        covidTracker = new CovidTracker(this);
-        covidTracker.execute();
+        LegacyTableView legacyTableView = (LegacyTableView)findViewById(R.id.legacy_table_view);
+        legacyTableView.setTitle(LegacyTableView.readLegacyTitle());
+        legacyTableView.setContent(LegacyTableView.readLegacyContent());
+        legacyTableView.setTheme(10);
+        legacyTableView.setHeaderBackgroundLinearGradientBOTTOM("#0D8E53");
+        legacyTableView.setHeaderBackgroundLinearGradientTOP("#0D8E53");
 
-        vaccineTracker = new VaccineTracker(this);
-        vaccineTracker.execute();
-
-
-
+        legacyTableView.setTablePadding(7);
+        legacyTableView.setContentTextSize(40);
+        legacyTableView.setTitleTextSize(40);
+        legacyTableView.build();
 
 
     }
-    public void TotalCaseClicked(View v)
-    {
-        Intent intent = new Intent(this, Details.class);
-        intent.putExtra("Clicked", 1);
-        startActivity(intent);
-    }
-
-    public void TotalDeathClicked(View v)
-    {
-        Intent intent = new Intent(this, Details.class);
-        intent.putExtra("Clicked", 2);
-        startActivity(intent);
-    }
-
-    public void TotalRecoveredClicked(View v)
-    {
-        Intent intent = new Intent(this, Details.class);
-        intent.putExtra("Clicked", 3);
-        startActivity(intent);
-    }
-
-    public void NewCaseClicked(View v)
-    {
-        Intent intent = new Intent(this, Details.class);
-        intent.putExtra("Clicked", 4);
-        startActivity(intent);
-    }
-
-    public void navDraverClicked(View v)
-    {
-        drawerLayout.openDrawer(Gravity.LEFT);
-    }
-
-
 
 
     @Override
@@ -150,7 +105,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Intent t= new Intent(this, TableDataActivity.class);
                 startActivity(t);
                 break;
-
             case R.id.nav_vaccine:
                 Intent v= new Intent(this, VaccineActivity.class);
                 startActivity(v);
@@ -170,7 +124,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }
+
+
+    public void navDraverClicked(View v)
+    {
+        drawerLayout.openDrawer(Gravity.LEFT);
+    }
+
 }
-
-
-

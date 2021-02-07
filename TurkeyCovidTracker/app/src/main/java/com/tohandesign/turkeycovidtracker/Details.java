@@ -424,6 +424,10 @@ public class Details extends AppCompatActivity implements NavigationView.OnNavig
                 Intent intentGit = new Intent(Intent.ACTION_VIEW, uriGithub);
                 startActivity(intentGit);
                 break;
+            case R.id.nav_vaccine:
+                Intent v= new Intent(this, VaccineActivity.class);
+                startActivity(v);
+                break;
 
 
         }

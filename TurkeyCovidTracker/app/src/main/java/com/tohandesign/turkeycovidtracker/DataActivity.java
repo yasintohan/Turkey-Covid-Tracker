@@ -146,6 +146,10 @@ public class DataActivity extends AppCompatActivity implements NavigationView.On
                 Intent intentGit = new Intent(Intent.ACTION_VIEW, uriGithub);
                 startActivity(intentGit);
                 break;
+            case R.id.nav_vaccine:
+                Intent v= new Intent(this, VaccineActivity.class);
+                startActivity(v);
+                break;
 
 
         }
