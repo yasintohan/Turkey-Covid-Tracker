@@ -12,7 +12,7 @@ android {
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
-
+        vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -47,4 +47,9 @@ dependencies {
     implementation 'com.github.AnyChart:AnyChart-Android:1.1.2'
 
     implementation 'com.github.levitnudi:LegacyTableView:1.4'
+
+    implementation 'com.github.devsideal:VectorChildFinder:1.0.0'
+
+    implementation 'de.codecrafters.tableview:tableview:2.2.0'
+
 }

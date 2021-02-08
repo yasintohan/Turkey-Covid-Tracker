@@ -98,29 +98,41 @@ android:id="@+id/drawer">
 
         </androidx.cardview.widget.CardView>
 
-        <com.levitnudi.legacytableview.LegacyTableView
-            android:id="@+id/legacy_table_view"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHeight_percent=".3"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cardView" />
+
+            <RelativeLayout
+                android:id="@+id/scrollView"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHeight_percent=".3"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cardView" >
+
+                <de.codecrafters.tableview.TableView
+                    xmlns:table="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/legacy_table_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"
+                    table:tableView_columnCount="3"
+                    />
+            </RelativeLayout>
+
+
+
 
 
         <ImageView
             android:id="@+id/mapImage"
             android:layout_width="0dp"
-            android:layout_height="200dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
+            android:layout_height="0dp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent=".35"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/legacy_table_view"
-            app:srcCompat="@drawable/tr_map" />
+            app:layout_constraintTop_toBottomOf="@+id/scrollView"
+            app:srcCompat="@drawable/ic_turkey_map" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
