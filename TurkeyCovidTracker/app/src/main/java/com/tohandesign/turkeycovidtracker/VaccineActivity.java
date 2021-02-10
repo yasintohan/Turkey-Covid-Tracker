@@ -38,9 +38,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import de.codecrafters.tableview.TableView;
+import de.codecrafters.tableview.colorizers.TableDataRowColorizer;
 import de.codecrafters.tableview.listeners.TableDataClickListener;
 import de.codecrafters.tableview.toolkit.SimpleTableDataAdapter;
 import de.codecrafters.tableview.toolkit.SimpleTableHeaderAdapter;
+import de.codecrafters.tableview.toolkit.TableDataRowBackgroundProviders;
+import de.codecrafters.tableview.toolkit.TableDataRowColorizers;
 
 public class VaccineActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
@@ -52,18 +55,18 @@ public class VaccineActivity extends AppCompatActivity implements NavigationView
 
     public static TextView mainCountText;
     ImageView mapImage;
-
+    VectorChildFinder vector;
     public static int vaccineCount = 0;
     public static List<VaccineItem> itemList = new ArrayList<VaccineItem>();
 
-
+    TableView<String[]> tableView;
     private static final String[] TABLE_HEADERS = { "#","City",  "Vaccinated"};
     private static final String[][] DATA_TO_SHOW = new String[81][3];
 
     SharedPreferences sharedPref;
 
     public VectorDrawableCompat.VFullPath pathNew;
-
+    public VectorDrawableCompat.VFullPath mapPath;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,7 +86,7 @@ public class VaccineActivity extends AppCompatActivity implements NavigationView
         vaccineTracker.execute();
 
         sharedPref = this.getSharedPreferences("sharedPref",Context.MODE_PRIVATE);
-        getThemeMode();
+
 
         mainCountText = (TextView) findViewById(R.id.mainCount);
         mainCountText.setText(String.valueOf(vaccineCount));
@@ -98,10 +101,10 @@ public class VaccineActivity extends AppCompatActivity implements NavigationView
 
 
 
-        TableView<String[]> tableView = (TableView<String[]>) findViewById(R.id.legacy_table_view);
+        tableView = (TableView<String[]>) findViewById(R.id.legacy_table_view);
         tableView.setHeaderAdapter(new SimpleTableHeaderAdapter(this, TABLE_HEADERS));
         tableView.setDataAdapter(new SimpleTableDataAdapter(this, DATA_TO_SHOW));
-        tableView.setHeaderBackgroundColor(Color.parseColor("#FF018786"));
+        tableView.setHeaderBackgroundColor(Color.parseColor("#007C42"));
         tableView.addDataClickListener(new TableDataClickListener() {
             @Override
             public void onDataClicked(int rowIndex, Object clickedData) {
@@ -109,7 +112,7 @@ public class VaccineActivity extends AppCompatActivity implements NavigationView
             }
         });
 
-
+        getThemeMode();
 
 
     }
@@ -130,19 +133,32 @@ public class VaccineActivity extends AppCompatActivity implements NavigationView
 
     public void getThemeMode(){
         boolean darkModeValue = sharedPref.getBoolean("darkModeValue",false);
+        VectorChildFinder vector = new VectorChildFinder(getApplication(), R.drawable.ic_turkey_map, mapImage);
         if (darkModeValue) {
+            for(int i = 1; i <= 81; i++) {
+                String cityStr = i + "city";
+                mapPath = vector.findPathByName(cityStr);
+                mapPath.setStrokeColor(Color.WHITE);
+            }
 
-
-        }else {
-
+            int colorEvenRows = getResources().getColor(R.color.tableBG);
+            tableView.setDataRowBackgroundProvider(TableDataRowBackgroundProviders.alternatingRowColors(colorEvenRows, colorEvenRows));
         }
 
     }
 
     public void setCityBg(String city, String name){
         VectorChildFinder vector = new VectorChildFinder(getApplication(), R.drawable.ic_turkey_map, mapImage);
-        //Toast.makeText(VaccineActivity.this, name, Toast.LENGTH_SHORT).show();
         String newPathStr = city + "city";
+        boolean darkModeValue = sharedPref.getBoolean("darkModeValue",false);
+        if (darkModeValue) {
+            for(int i = 1; i <= 81; i++) {
+                String cityStr = i + "city";
+                mapPath = vector.findPathByName(cityStr);
+                mapPath.setStrokeColor(Color.WHITE);
+            }
+
+        }
         pathNew = vector.findPathByName(newPathStr);
         pathNew.setFillColor(Color.RED);
     }

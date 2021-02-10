@@ -24,6 +24,7 @@ public class CovidTracker extends AsyncTask<Void, Void, Void> {
 
     private String totalDeath;
 
+
     private List<CovidInfoItem> itemList = new ArrayList<CovidInfoItem>();
     private CovidInfoItem covidItem;
 

@@ -20,5 +20,6 @@
 
     <color name="background">#FCFCFC</color>
 
+    <color name="tableBG">#818181</color>
 
 </resources>
