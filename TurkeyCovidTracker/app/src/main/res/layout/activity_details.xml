@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FCFCFC"
+    android:background="@color/background"
     tools:context=".Details"
     android:id="@+id/drawer">
 
@@ -23,7 +23,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#FCFCFC"
+
         >
 
 
@@ -78,7 +78,8 @@
                     android:text="New Cases"
                     android:textSize="18sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:textColor="@color/mainText"/>
 
                 <TextView
                     android:id="@+id/mainCount"
@@ -87,7 +88,7 @@
                     android:layout_marginTop="16dp"
                     android:fontFamily="@font/bold"
                     android:text="547"
-                    android:textColor="#0D8E53"
+                    android:textColor="@color/subText"
                     android:textSize="36sp"
                     app:layout_constraintStart_toStartOf="@+id/textView18"
                     app:layout_constraintTop_toBottomOf="@+id/textView18" />
@@ -101,7 +102,8 @@
                     android:text="Statistics"
                     android:textSize="18sp"
                     app:layout_constraintStart_toStartOf="@+id/mainCount"
-                    app:layout_constraintTop_toBottomOf="@+id/mainCount" />
+                    app:layout_constraintTop_toBottomOf="@+id/mainCount"
+                    android:textColor="@color/mainText"/>
 
                 <com.anychart.AnyChartView
                     android:id="@+id/imageView17"
@@ -113,7 +115,9 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView20"
-                    app:srcCompat="@drawable/graph" />
+                    app:srcCompat="@drawable/graph"
+                    android:background="@color/background"
+                    />
 
 
                 <TextView
@@ -123,7 +127,7 @@
                     android:layout_marginTop="16dp"
                     android:fontFamily="@font/bold"
                     android:text="6.43%"
-                    android:textColor="#0D8E53"
+                    android:textColor="@color/subText"
                     android:textSize="20sp"
                     app:layout_constraintStart_toStartOf="@+id/imageView17"
                     app:layout_constraintTop_toBottomOf="@+id/imageView17" />
@@ -137,7 +141,8 @@
                     android:textSize="12sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/textView21"
-                    app:layout_constraintTop_toTopOf="@+id/textView23" />
+                    app:layout_constraintTop_toTopOf="@+id/textView23"
+                    android:textColor="@color/mainText"/>
 
                 <TextView
                     android:id="@+id/textView23"
@@ -146,7 +151,7 @@
                     android:layout_marginTop="16dp"
                     android:fontFamily="@font/bold"
                     android:text="9.43%"
-                    android:textColor="#0D8E53"
+                    android:textColor="@color/subText"
                     android:textSize="20sp"
                     app:layout_constraintEnd_toEndOf="@+id/imageView17"
                     app:layout_constraintTop_toBottomOf="@+id/imageView17" />
@@ -160,7 +165,8 @@
                     android:textSize="12sp"
                     app:layout_constraintBottom_toBottomOf="@+id/textView22"
                     app:layout_constraintEnd_toEndOf="@+id/textView23"
-                    app:layout_constraintTop_toBottomOf="@+id/textView23" />
+                    app:layout_constraintTop_toBottomOf="@+id/textView23"
+                    android:textColor="@color/mainText"/>
 
                 <TextView
                     android:id="@+id/textView25"
@@ -169,7 +175,7 @@
                     android:layout_marginStart="18dp"
                     android:fontFamily="@font/medium"
                     android:text="5.9%"
-                    android:textColor="#0D8E53"
+                    android:textColor="@color/subText"
                     app:layout_constraintBottom_toBottomOf="@+id/mainCount"
                     app:layout_constraintStart_toEndOf="@+id/mainCount"
                     app:layout_constraintTop_toTopOf="@+id/mainCount" />

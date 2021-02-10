@@ -3,15 +3,20 @@ package com.tohandesign.turkeycovidtracker;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.CompoundButton;
+import android.widget.Switch;
 
 import com.google.android.material.navigation.NavigationView;
 
@@ -19,11 +24,17 @@ public class SettingsActivity extends AppCompatActivity implements NavigationVie
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     ActionBarDrawerToggle toggle;
+    Switch aSwitch;
+    SharedPreferences sharedPref;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
+        aSwitch=(Switch)findViewById(R.id.darkModeSwitch);
+        sharedPref =  this.getSharedPreferences("sharedPref",Context.MODE_PRIVATE);
+        getThemeMode();
 
         drawerLayout = findViewById(R.id.drawer);
         navigationView = findViewById(R.id.navmenu);
@@ -34,7 +45,41 @@ public class SettingsActivity extends AppCompatActivity implements NavigationVie
         navigationView.setNavigationItemSelectedListener(this);
         toggle.syncState();
 
+
+
+        aSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(aSwitch.isChecked()){
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                    SharedPreferences.Editor editor = sharedPref.edit();
+                    editor.putBoolean("darkModeValue" , true);
+
+                    editor.commit();
+                }else {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                    SharedPreferences.Editor editor = sharedPref.edit();
+                    editor.putBoolean("darkModeValue" , false);
+                    editor.commit();
+                }
+            }
+        });
+
+
+
+
+
     }
+
+    public void getThemeMode(){
+        boolean darkModeValue = sharedPref.getBoolean("darkModeValue",false);
+        if (darkModeValue) {
+                aSwitch.setChecked(true);
+        }
+
+    }
+
+
 
 
     @Override

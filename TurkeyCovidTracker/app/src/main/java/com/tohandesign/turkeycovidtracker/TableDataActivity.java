@@ -3,10 +3,13 @@ package com.tohandesign.turkeycovidtracker;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -28,6 +31,8 @@ public class TableDataActivity extends AppCompatActivity implements NavigationVi
     ActionBarDrawerToggle toggle;
     public static List<CovidInfoItem> itemList = new ArrayList<CovidInfoItem>();;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +46,7 @@ public class TableDataActivity extends AppCompatActivity implements NavigationVi
         toggle.setDrawerIndicatorEnabled(true);
         navigationView.setNavigationItemSelectedListener(this);
         toggle.syncState();
+
 
 
         itemList = DataActivity.itemList;
@@ -72,6 +78,9 @@ public class TableDataActivity extends AppCompatActivity implements NavigationVi
 
 
     }
+
+
+
 
 
     @Override

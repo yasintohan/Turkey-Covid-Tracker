@@ -4,7 +4,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -23,6 +25,7 @@ import java.util.List;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -50,6 +53,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public static TextView dailyCaseText;
 
     public static TextView dateText;
+
+    SharedPreferences sharedPref;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,6 +67,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         dailyCaseText = (TextView) findViewById(R.id.dailyCase);
         dateText = (TextView) findViewById(R.id.dateText);
 
+        sharedPref = this.getSharedPreferences("sharedPref",Context.MODE_PRIVATE);
+        getThemeMode();
 
         drawerLayout = findViewById(R.id.drawer);
         navigationView = findViewById(R.id.navmenu);
@@ -87,6 +95,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
     }
+
+
+    public void getThemeMode(){
+        boolean darkModeValue = sharedPref.getBoolean("darkModeValue",false);
+
+        if (darkModeValue) {
+
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+
+        }
+
+    }
+
     public void TotalCaseClicked(View v)
     {
         Intent intent = new Intent(this, Details.class);

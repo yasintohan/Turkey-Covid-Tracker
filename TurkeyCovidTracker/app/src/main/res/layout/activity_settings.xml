@@ -69,7 +69,8 @@ tools:context=".SettingsActivity"
                     android:fontFamily="@font/regular"
                     android:text="Settings"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/imageView" />
+                    app:layout_constraintTop_toBottomOf="@+id/imageView"
+                    android:textColor="@color/mainText"/>
 
 
                 <Switch
@@ -82,7 +83,8 @@ tools:context=".SettingsActivity"
                     android:text="Dark Mode"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/cardView16text" />
+                    app:layout_constraintTop_toBottomOf="@+id/cardView16text"
+                    android:textColor="@color/mainText"/>
 
                 <TextView
                     android:id="@+id/textView6"
@@ -93,7 +95,8 @@ tools:context=".SettingsActivity"
                     android:text="Notifications"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/darkModeSwitch" />
+                    app:layout_constraintTop_toBottomOf="@+id/darkModeSwitch"
+                    android:textColor="@color/mainText"/>
 
 
                 <Switch
@@ -107,7 +110,8 @@ tools:context=".SettingsActivity"
                     android:text="Notifications"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView6" />
+                    app:layout_constraintTop_toBottomOf="@+id/textView6"
+                    android:textColor="@color/mainText"/>
 
                 <TextView
                     android:id="@+id/textView8"
@@ -118,7 +122,8 @@ tools:context=".SettingsActivity"
                     android:text="Regional"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/switch2" />
+                    app:layout_constraintTop_toBottomOf="@+id/switch2"
+                    android:textColor="@color/mainText"/>
 
                 <TextView
                     android:id="@+id/textView7"
@@ -130,7 +135,8 @@ tools:context=".SettingsActivity"
                     android:text="Language"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView8" />
+                    app:layout_constraintTop_toBottomOf="@+id/textView8"
+                    android:textColor="@color/mainText"/>
 
                 <TextView
                     android:id="@+id/textView9"
@@ -144,7 +150,8 @@ tools:context=".SettingsActivity"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView7"/>
+                    app:layout_constraintTop_toBottomOf="@+id/textView7"
+                    android:textColor="@color/mainText"/>
 
 
 

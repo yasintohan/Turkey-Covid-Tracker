@@ -3,12 +3,15 @@ package com.tohandesign.turkeycovidtracker;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
@@ -45,6 +48,8 @@ public class VaccineActivity extends AppCompatActivity implements NavigationView
     NavigationView navigationView;
     ActionBarDrawerToggle toggle;
 
+    VaccineTracker vaccineTracker;
+
     public static TextView mainCountText;
     ImageView mapImage;
 
@@ -55,7 +60,7 @@ public class VaccineActivity extends AppCompatActivity implements NavigationView
     private static final String[] TABLE_HEADERS = { "#","City",  "Vaccinated"};
     private static final String[][] DATA_TO_SHOW = new String[81][3];
 
-
+    SharedPreferences sharedPref;
 
     public VectorDrawableCompat.VFullPath pathNew;
 
@@ -74,6 +79,12 @@ public class VaccineActivity extends AppCompatActivity implements NavigationView
         navigationView.setNavigationItemSelectedListener(this);
         toggle.syncState();
 
+        vaccineTracker = new VaccineTracker(this);
+        vaccineTracker.execute();
+
+        sharedPref = this.getSharedPreferences("sharedPref",Context.MODE_PRIVATE);
+        getThemeMode();
+
         mainCountText = (TextView) findViewById(R.id.mainCount);
         mainCountText.setText(String.valueOf(vaccineCount));
 
@@ -85,13 +96,7 @@ public class VaccineActivity extends AppCompatActivity implements NavigationView
 
         mapImage.invalidate();
 
-        int counter = 0;
-        for(VaccineItem item : VaccineTracker.itemList) {
-            DATA_TO_SHOW[counter][0] = String.valueOf(counter + 1);
-            DATA_TO_SHOW[counter][1] = item.getCityName();
-            DATA_TO_SHOW[counter][2] =  String.valueOf(item.getValue());
-            counter++;
-        }
+
 
         TableView<String[]> tableView = (TableView<String[]>) findViewById(R.id.legacy_table_view);
         tableView.setHeaderAdapter(new SimpleTableHeaderAdapter(this, TABLE_HEADERS));
@@ -106,6 +111,31 @@ public class VaccineActivity extends AppCompatActivity implements NavigationView
 
 
 
+
+    }
+
+    @Override
+    public void onStart() {
+
+        super.onStart();
+
+        int counter = 0;
+        for(VaccineItem item : VaccineTracker.itemList) {
+            DATA_TO_SHOW[counter][0] = String.valueOf(counter + 1);
+            DATA_TO_SHOW[counter][1] = item.getCityName();
+            DATA_TO_SHOW[counter][2] =  String.valueOf(item.getValue());
+            counter++;
+        }
+    }
+
+    public void getThemeMode(){
+        boolean darkModeValue = sharedPref.getBoolean("darkModeValue",false);
+        if (darkModeValue) {
+
+
+        }else {
+
+        }
 
     }
 

@@ -121,7 +121,7 @@
                             android:layout_marginStart="4dp"
                             android:fontFamily="@font/regular"
                             android:text="New Cases"
-                            android:textColor="#1E2432"
+                            android:textColor="@color/mainText"
                             android:textSize="11sp"
                             app:layout_constraintBottom_toBottomOf="@+id/imageView9"
                             app:layout_constraintStart_toEndOf="@+id/imageView9"
@@ -134,7 +134,7 @@
                             android:layout_marginTop="8dp"
                             android:fontFamily="@font/bold"
                             android:text="52"
-                            android:textColor="#1E2432"
+                            android:textColor="@color/mainText"
                             android:textSize="20sp"
                             app:layout_constraintStart_toStartOf="@+id/imageView9"
                             app:layout_constraintTop_toBottomOf="@+id/imageView9" />
@@ -192,7 +192,7 @@
                             android:layout_marginStart="4dp"
                             android:fontFamily="@font/regular"
                             android:text="Total Recovered"
-                            android:textColor="#1E2432"
+                            android:textColor="@color/mainText"
                             android:textSize="11sp"
                             app:layout_constraintBottom_toBottomOf="@+id/imageView8"
                             app:layout_constraintStart_toEndOf="@+id/imageView8"
@@ -205,7 +205,7 @@
                             android:layout_marginTop="8dp"
                             android:fontFamily="@font/bold"
                             android:text="689"
-                            android:textColor="#1E2432"
+                            android:textColor="@color/mainText"
                             android:textSize="20sp"
                             app:layout_constraintStart_toStartOf="@+id/imageView8"
                             app:layout_constraintTop_toBottomOf="@+id/imageView8" />
@@ -253,7 +253,7 @@
                             android:layout_marginStart="4dp"
                             android:fontFamily="@font/regular"
                             android:text="Total Cases"
-                            android:textColor="#1E2432"
+                            android:textColor="@color/mainText"
                             android:textSize="11sp"
                             app:layout_constraintBottom_toBottomOf="@+id/imageView6"
                             app:layout_constraintStart_toEndOf="@+id/imageView6"
@@ -266,7 +266,7 @@
                             android:layout_marginTop="8dp"
                             android:fontFamily="@font/bold"
                             android:text="1,062"
-                            android:textColor="#1E2432"
+                            android:textColor="@color/mainText"
                             android:textSize="20sp"
                             app:layout_constraintStart_toStartOf="@+id/imageView6"
                             app:layout_constraintTop_toBottomOf="@+id/imageView6" />
@@ -334,7 +334,7 @@
                             android:layout_marginStart="4dp"
                             android:fontFamily="@font/regular"
                             android:text="Total Death"
-                            android:textColor="#1E2432"
+                            android:textColor="@color/mainText"
                             android:textSize="11sp"
                             app:layout_constraintBottom_toBottomOf="@+id/imageView7"
                             app:layout_constraintStart_toEndOf="@+id/imageView7"
@@ -347,7 +347,7 @@
                             android:layout_marginTop="8dp"
                             android:fontFamily="@font/bold"
                             android:text="75"
-                            android:textColor="#1E2432"
+                            android:textColor="@color/mainText"
                             android:textSize="20sp"
                             app:layout_constraintStart_toStartOf="@+id/imageView7"
                             app:layout_constraintTop_toBottomOf="@+id/imageView7" />
@@ -366,7 +366,7 @@
                     android:layout_marginEnd="16dp"
                     android:fontFamily="@font/bold"
                     android:text="15 March 2021"
-                    android:textColor="#0D1333"
+                    android:textColor="@color/mainText"
 
                     android:textSize="20sp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -383,7 +383,7 @@
                 android:layout_marginTop="24dp"
                 android:fontFamily="@font/bold"
                 android:text="Preventions"
-                android:textColor="#0D1333"
+                android:textColor="@color/mainText"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
@@ -475,7 +475,7 @@
         app:headerLayout="@layout/navheader"
         app:menu="@menu/activity_main_drawer"
         android:layout_gravity="start"/>
-
+-->
     </androidx.drawerlayout.widget.DrawerLayout >
 
 </androidx.constraintlayout.widget.ConstraintLayout>

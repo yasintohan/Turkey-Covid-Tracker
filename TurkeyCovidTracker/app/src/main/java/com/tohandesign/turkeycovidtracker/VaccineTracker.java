@@ -24,7 +24,7 @@ public class VaccineTracker extends AsyncTask<Void, Void, Void> {
     public static List<VaccineItem> itemList = new ArrayList<VaccineItem>();
 
     private Context context;
-    private ProgressDialog pd;
+
 
 
     public VaccineTracker(Context context) {
@@ -34,11 +34,7 @@ public class VaccineTracker extends AsyncTask<Void, Void, Void> {
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
-        pd = new ProgressDialog(context);
-        pd.setMessage("Lütfen bekleyiniz...");
-        pd.setIndeterminate(false);
-        pd.setCancelable(false);
-        pd.show();
+
     }
 
     @Override
@@ -64,8 +60,8 @@ public class VaccineTracker extends AsyncTask<Void, Void, Void> {
 
                 }
             }
-
-
+            itemList.clear();
+            VaccineActivity.itemList.clear();
             Elements cityElements =doc.select("#color1");
             for(Element element : cityElements) {
                 String valueStr = Jsoup.parse(element.html()).text();
@@ -74,7 +70,7 @@ public class VaccineTracker extends AsyncTask<Void, Void, Void> {
                 VaccineItem item = new VaccineItem();
                 item.setCityName(cityName);
                 item.setValue(Integer.parseInt(valueStr));
-                VaccineActivity.itemList.add(item);
+                //VaccineActivity.itemList.add(item);
                 itemList.add(item);
 
             }
@@ -88,9 +84,11 @@ public class VaccineTracker extends AsyncTask<Void, Void, Void> {
 
     @Override
     protected void onPostExecute(Void result) {
-        pd.dismiss();
         if(context instanceof VaccineActivity) {
-            VaccineActivity.itemList = itemList;
+            VaccineActivity.itemList.clear();
+            for(VaccineItem item : itemList) {
+                VaccineActivity.itemList.add(item);
+            }
         }
     }
 

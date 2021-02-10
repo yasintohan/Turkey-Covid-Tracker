@@ -3,10 +3,13 @@ package com.tohandesign.turkeycovidtracker;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
@@ -54,6 +57,8 @@ public class Details extends AppCompatActivity implements NavigationView.OnNavig
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     ActionBarDrawerToggle toggle;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -391,6 +396,9 @@ public class Details extends AppCompatActivity implements NavigationView.OnNavig
         anyChartView.setChart(cartesian);
 
     }
+
+
+
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {

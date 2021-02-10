@@ -21,7 +21,7 @@ import java.util.List;
 public class CovidTracker extends AsyncTask<Void, Void, Void> {
 
     private Context context;
-    private ProgressDialog pd;
+
     private String totalDeath;
 
     private List<CovidInfoItem> itemList = new ArrayList<CovidInfoItem>();
@@ -35,11 +35,7 @@ public class CovidTracker extends AsyncTask<Void, Void, Void> {
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
-        pd = new ProgressDialog(context);
-        pd.setMessage("Lütfen bekleyiniz...");
-        pd.setIndeterminate(false);
-        pd.setCancelable(false);
-        pd.show();
+
     }
 
     @Override
@@ -63,7 +59,8 @@ public class CovidTracker extends AsyncTask<Void, Void, Void> {
             aciklama = aciklama.replace(";//", "}");
 
             JSONObject jsnobject = new JSONObject(aciklama);
-
+            Details.itemList.clear();
+            DataActivity.itemList.clear();
 
             JSONArray jsonArray = jsnobject.getJSONArray("variables");
             for (int i = 0; i < jsonArray.length(); i++) {
@@ -105,7 +102,7 @@ public class CovidTracker extends AsyncTask<Void, Void, Void> {
 
     @Override
     protected void onPostExecute(Void result) {
-        pd.dismiss();
+
         if(context instanceof MainActivity) {
 
 
