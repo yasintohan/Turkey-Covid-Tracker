@@ -92,4 +92,7 @@
     <string name="english">İngilizce</string>
     <string name="german">Almanca</string>
 
+    <string name="notiTitle">Günün Verileri Hazır</string>
+    <string name="notisubTitle">Günün Verileri</string>
+
 </resources>

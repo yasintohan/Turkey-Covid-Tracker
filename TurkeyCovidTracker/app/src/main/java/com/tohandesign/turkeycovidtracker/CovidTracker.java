@@ -2,8 +2,11 @@ package com.tohandesign.turkeycovidtracker;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.util.Log;
+
+import com.tohandesign.turkeycovidtracker.Notifications.NotificationReceiver;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -22,7 +25,6 @@ public class CovidTracker extends AsyncTask<Void, Void, Void> {
 
     private Context context;
 
-    private String totalDeath;
 
 
     private List<CovidInfoItem> itemList = new ArrayList<CovidInfoItem>();
@@ -30,6 +32,10 @@ public class CovidTracker extends AsyncTask<Void, Void, Void> {
 
     public CovidTracker(Context context) {
         this.context = context;
+        covidItem = new CovidInfoItem();
+    }
+
+    public CovidTracker() {
         covidItem = new CovidInfoItem();
     }
 
@@ -91,7 +97,7 @@ public class CovidTracker extends AsyncTask<Void, Void, Void> {
                 DataActivity.itemList.add(item);
                 itemList.add(item);
             }
-            Log.i("JsonLog", String.valueOf(jsonArray.getJSONObject(0)));
+            //Log.i("JsonLog", String.valueOf(jsonArray.getJSONObject(0)));
             setCovidItem(itemList.get(0));
 
 

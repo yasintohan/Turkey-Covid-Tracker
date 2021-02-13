@@ -55,7 +55,7 @@ public class VaccineTracker extends AsyncTask<Void, Void, Void> {
                     vaccineText = Jsoup.parse(element.html()).text();
                     vaccineText = vaccineText.replace("var asiyapilankisisayisi = ", "");
                     vaccineText = vaccineText.replace(";", "");
-                    Log.i("JsonLog", vaccineText);
+                   // Log.i("JsonLog", vaccineText);
                     VaccineActivity.vaccineCount = Integer.parseInt(vaccineText);
 
                 }

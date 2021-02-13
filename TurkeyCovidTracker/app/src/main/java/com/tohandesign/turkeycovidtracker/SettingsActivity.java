@@ -8,12 +8,16 @@ import androidx.appcompat.widget.PopupMenu;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.SystemClock;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
@@ -23,6 +27,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
+import com.tohandesign.turkeycovidtracker.Notifications.NotificationReceiver;
 
 import java.util.Locale;
 
@@ -31,8 +36,12 @@ public class SettingsActivity extends AppCompatActivity implements NavigationVie
     NavigationView navigationView;
     ActionBarDrawerToggle toggle;
     Switch aSwitch;
+    Switch notiSwitch;
     SharedPreferences sharedPref;
     TextView languageBtn;
+
+
+    final static int REQUEST_CODE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +68,25 @@ public class SettingsActivity extends AppCompatActivity implements NavigationVie
             }
         });
 
+        notiSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(notiSwitch.isChecked()){
+                    Log.i("JsonLog", "Bildirimler Açıldı");
+                    setAlarm(true);
+                    SharedPreferences.Editor editor = sharedPref.edit();
+                    editor.putBoolean("notificationValue" , true);
+                    editor.commit();
+                }else {
+                    Log.i("JsonLog", "Bildirimler Kapandı");
+                    setAlarm(false);
+                    SharedPreferences.Editor editor = sharedPref.edit();
+                    editor.putBoolean("notificationValue" , false);
+                    editor.commit();
+                }
+            }
+        });
+
 
 
 
@@ -69,6 +97,9 @@ public class SettingsActivity extends AppCompatActivity implements NavigationVie
         aSwitch=(Switch)findViewById(R.id.darkModeSwitch);
         sharedPref =  this.getSharedPreferences("sharedPref",Context.MODE_PRIVATE);
         getThemeMode();
+
+        notiSwitch=(Switch)findViewById(R.id.switch2);
+        getNotificationMode();
 
         languageBtn = (TextView) findViewById(R.id.textView7);
 
@@ -91,6 +122,13 @@ public class SettingsActivity extends AppCompatActivity implements NavigationVie
 
     }
 
+    public void getNotificationMode(){
+        boolean darkNotificationValue = sharedPref.getBoolean("notificationValue",false);
+        if (darkNotificationValue) {
+            notiSwitch.setChecked(true);
+        }
+
+    }
 
 
 
@@ -187,6 +225,22 @@ public class SettingsActivity extends AppCompatActivity implements NavigationVie
         editor.apply();
         setContentView(R.layout.activity_settings);
         getViews();
+    }
+
+    private void setAlarm(Boolean active){
+
+        Intent intent = new Intent(getBaseContext(), NotificationReceiver.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(getBaseContext(), REQUEST_CODE, intent, 0);
+        AlarmManager alarmManager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
+        if(active) {
+            alarmManager.setRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP,
+                    SystemClock.elapsedRealtime(),
+                    5*60*1000,
+                    pendingIntent);
+        } else {
+            alarmManager.cancel(pendingIntent);
+        }
+
     }
 
 

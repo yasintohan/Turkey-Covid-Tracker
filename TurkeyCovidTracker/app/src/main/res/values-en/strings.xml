@@ -92,4 +92,8 @@
     <string name="english">English</string>
     <string name="german">German</string>
 
+
+    <string name="notiTitle">Data of the Day Ready</string>
+    <string name="notisubTitle">Data of the Day</string>
+
 </resources>
