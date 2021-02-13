@@ -6,7 +6,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -22,6 +27,7 @@ import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class DataActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
@@ -52,9 +58,15 @@ public class DataActivity extends AppCompatActivity implements NavigationView.On
     NavigationView navigationView;
     ActionBarDrawerToggle toggle;
 
+    SharedPreferences langSharedPref;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        langSharedPref = this.getSharedPreferences("language", Context.MODE_PRIVATE);
+        String lang = langSharedPref.getString("Language", "en");
+        setLocale(this,lang);
         setContentView(R.layout.activity_data);
 
 
@@ -278,5 +290,16 @@ public class DataActivity extends AppCompatActivity implements NavigationView.On
         }
 
     }
+
+
+    public void setLocale(Activity activity, String lang){
+        Locale locale = new Locale(lang);
+        Locale.setDefault(locale);
+        Resources resources = activity.getResources();
+        Configuration config = resources.getConfiguration();
+        config.setLocale(locale);
+        resources.updateConfiguration(config, resources.getDisplayMetrics());
+    }
+
 
 }

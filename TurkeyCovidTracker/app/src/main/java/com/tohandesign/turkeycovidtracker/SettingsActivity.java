@@ -4,12 +4,14 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.appcompat.widget.PopupMenu;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -17,8 +19,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.Switch;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
+
+import java.util.Locale;
 
 public class SettingsActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     DrawerLayout drawerLayout;
@@ -26,26 +32,14 @@ public class SettingsActivity extends AppCompatActivity implements NavigationVie
     ActionBarDrawerToggle toggle;
     Switch aSwitch;
     SharedPreferences sharedPref;
+    TextView languageBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
-        aSwitch=(Switch)findViewById(R.id.darkModeSwitch);
-        sharedPref =  this.getSharedPreferences("sharedPref",Context.MODE_PRIVATE);
-        getThemeMode();
-
-        drawerLayout = findViewById(R.id.drawer);
-        navigationView = findViewById(R.id.navmenu);
-        navigationView.setItemIconTintList(null);
-        toggle = new ActionBarDrawerToggle(this,drawerLayout,null,R.string.open,R.string.close);
-        drawerLayout.addDrawerListener(toggle);
-        toggle.setDrawerIndicatorEnabled(true);
-        navigationView.setNavigationItemSelectedListener(this);
-        toggle.syncState();
-
-
+        getViews();
 
         aSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -68,6 +62,24 @@ public class SettingsActivity extends AppCompatActivity implements NavigationVie
 
 
 
+
+    }
+
+    public void getViews(){
+        aSwitch=(Switch)findViewById(R.id.darkModeSwitch);
+        sharedPref =  this.getSharedPreferences("sharedPref",Context.MODE_PRIVATE);
+        getThemeMode();
+
+        languageBtn = (TextView) findViewById(R.id.textView7);
+
+        drawerLayout = findViewById(R.id.drawer);
+        navigationView = findViewById(R.id.navmenu);
+        navigationView.setItemIconTintList(null);
+        toggle = new ActionBarDrawerToggle(this,drawerLayout,null,R.string.open,R.string.close);
+        drawerLayout.addDrawerListener(toggle);
+        toggle.setDrawerIndicatorEnabled(true);
+        navigationView.setNavigationItemSelectedListener(this);
+        toggle.syncState();
 
     }
 
@@ -134,6 +146,50 @@ public class SettingsActivity extends AppCompatActivity implements NavigationVie
     {
         drawerLayout.openDrawer(Gravity.LEFT);
     }
+
+
+    public void languageClick(View v){
+        PopupMenu popup = new PopupMenu(SettingsActivity.this, languageBtn);
+
+        popup.getMenuInflater().inflate(R.menu.language_menu, popup.getMenu());
+
+
+        popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            public boolean onMenuItemClick(MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.menu_tr:
+                        setLocale("tr");
+                        break;
+                    case R.id.menu_en:
+                        setLocale("en");
+                        break;
+                    case R.id.menu_de:
+                        setLocale("de");
+                        break;
+
+                }
+                return true;
+            }
+        });
+
+        popup.show();
+
+    }
+
+    public void setLocale(String lang){
+        Locale locale = new Locale(lang);
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.locale = locale;
+        getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
+        SharedPreferences.Editor editor = getSharedPreferences("language", MODE_PRIVATE).edit();
+        editor.putString("Language", lang);
+        editor.apply();
+        setContentView(R.layout.activity_settings);
+        getViews();
+    }
+
+
 
 
 }

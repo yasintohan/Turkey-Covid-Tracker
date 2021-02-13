@@ -4,9 +4,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -22,6 +25,7 @@ import org.w3c.dom.Element;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -55,10 +59,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public static TextView dateText;
 
     SharedPreferences sharedPref;
+    SharedPreferences langSharedPref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        langSharedPref = this.getSharedPreferences("language",Context.MODE_PRIVATE);
+        String lang = langSharedPref.getString("Language", "en");
+        setLocale(this,lang);
+
         setContentView(R.layout.activity_main);
 
         totalDeathText = (TextView) findViewById(R.id.totalDeath);
@@ -68,7 +78,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         dateText = (TextView) findViewById(R.id.dateText);
 
         sharedPref = this.getSharedPreferences("sharedPref",Context.MODE_PRIVATE);
+
         getThemeMode();
+
+
 
         drawerLayout = findViewById(R.id.drawer);
         navigationView = findViewById(R.id.navmenu);
@@ -95,6 +108,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
     }
+
+
+
 
 
     public void getThemeMode(){
@@ -191,6 +207,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }
+
+
+    public void setLocale(Activity activity, String lang){
+        Locale locale = new Locale(lang);
+        Locale.setDefault(locale);
+        Resources resources = activity.getResources();
+        Configuration config = resources.getConfiguration();
+        config.setLocale(locale);
+        resources.updateConfiguration(config, resources.getDisplayMetrics());
+    }
+
+
+
+
 }
 
 

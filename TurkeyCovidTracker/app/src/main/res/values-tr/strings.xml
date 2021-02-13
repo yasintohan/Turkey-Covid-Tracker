@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Turkey Covid Tracker</string>
+
+    <string name="nav_header_title">Turkey Covid Tracker</string>
+    <string name="nav_header_subtitle">github.com/yasintohan</string>
+
+    <!--Menu Strings -->
+    <string name="menu_home">Ana Sayfa</string>
+    <string name="menu_daily">Günlük İstatistikler</string>
+    <string name="menu_vaccine">Aşı Durumu</string>
+    <string name="menu_table">Tüm Veriler</string>
+
+    <string name="menu_share">Paylaş</string>
+    <string name="menu_profile">Github Profili</string>
+    <string name="menu_github">Github Kaynak Kodları</string>
+
+    <string name="menu_settings">Ayarlar</string>
+    <!--#Menu Strings -->
+
+
+    <!--Preventions Strings -->
+    <string name="preventions">Önlemler</string>
+    <string name="washHand">Ellerini Yıka</string>
+    <string name="useMask">Maske Tak</string>
+    <string name="cleanDisinfects">Dezenfektanla Temizle</string>
+    <!--#Preventions Strings -->
+
+
+    <string name="open">Açık</string>
+    <string name="close">Kapalı</string>
+
+    <!--Statistics Strings -->
+    <string name="statistics">İstatistikler</string>
+    <string name="fromWeek">Geçen haftadan</string>
+    <string name="fromMonth">Geçen aydan</string>
+
+    <string name="date">Tarih</string>
+
+    <string name="today">Bugün</string>
+    <string name="testNumber">Test Sayısı</string>
+    <string name="newCase">Yeni Vakalar</string>
+    <string name="newPatients">Yeni Hastalar</string>
+    <string name="newDeaths">Yeni Ölümler</string>
+    <string name="newRecovered">Yeni İyileşenler</string>
+
+    <string name="thisWeek">Bu hafta</string>
+    <string name="pneumoniaRate">Zature Oranı</string>
+    <string name="bedFilling">Yatak Doluluk Oranı</string>
+    <string name="intensiveRate">Yoğun Bakım Oranı</string>
+    <string name="ventilatorRate">Ventilatör Oranı</string>
+    <string name="detectionRate">Tespit Süresi</string>
+    <string name="filationRate">Filyasyon Oranı</string>
+
+    <string name="total">Toplam</string>
+    <string name="totalTest">Toplam Test</string>
+    <string name="totalCases">Toplam Vaka</string>
+    <string name="totalDeaths">Toplam Ölüm</string>
+    <string name="heavyPatients">Heavy Hasta</string>
+    <string name="totalRecovered">Toplam İyileşen</string>
+
+
+    <string name="dailyTest">Günlük Test</string>
+    <string name="dailyCase">Günlük Vaka</string>
+    <string name="dailyPatient">Günlük Hasta</string>
+    <string name="dailyDeaths">Günlük Ölüm</string>
+    <string name="dailyRecovered">Günlük İyileşen</string>
+    <string name="hours">Saat</string>
+    <!--#Statistics Strings -->
+
+
+
+
+
+    <!--Vaccine Strings -->
+    <string name="numberVaccinated">Aşılanan Kişi Sayısı</string>
+    <string name="cityText">Şehir</string>
+    <string name="vaccinated">Aşılanan Sayısı</string>
+    <!--#Vaccine Strings -->
+
+
+    <!--Settings Strings -->
+    <string name="settings">Ayarlar</string>
+    <string name="darkMode">Karanlık Mod</string>
+    <string name="notifications">Bildirimler</string>
+    <string name="regional">Bölgesel</string>
+    <string name="language">Diller</string>
+    <!--#Settings Strings -->
+
+
+    <string name="turkish">Türkçe</string>
+    <string name="english">İngilizce</string>
+    <string name="german">Almanca</string>
+
+</resources>

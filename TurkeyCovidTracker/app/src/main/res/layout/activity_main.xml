@@ -26,13 +26,13 @@
             android:layout_height="match_parent">
 
 
-
             <TextView
                 android:id="@+id/textView16"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/medium"
-                android:text="Clean Disinfects"
+                android:gravity="center"
+                android:text="@string/cleanDisinfects"
                 android:textColor="@color/teal_700"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="@+id/imageView14"
@@ -120,7 +120,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="4dp"
                             android:fontFamily="@font/regular"
-                            android:text="New Cases"
+                            android:text="@string/newCase"
                             android:textColor="@color/mainText"
                             android:textSize="11sp"
                             app:layout_constraintBottom_toBottomOf="@+id/imageView9"
@@ -191,7 +191,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="4dp"
                             android:fontFamily="@font/regular"
-                            android:text="Total Recovered"
+                            android:text="@string/totalRecovered"
                             android:textColor="@color/mainText"
                             android:textSize="11sp"
                             app:layout_constraintBottom_toBottomOf="@+id/imageView8"
@@ -252,7 +252,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="4dp"
                             android:fontFamily="@font/regular"
-                            android:text="Total Cases"
+                            android:text="@string/totalCases"
                             android:textColor="@color/mainText"
                             android:textSize="11sp"
                             app:layout_constraintBottom_toBottomOf="@+id/imageView6"
@@ -333,7 +333,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="4dp"
                             android:fontFamily="@font/regular"
-                            android:text="Total Death"
+                            android:text="@string/totalDeaths"
                             android:textColor="@color/mainText"
                             android:textSize="11sp"
                             app:layout_constraintBottom_toBottomOf="@+id/imageView7"
@@ -382,7 +382,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="24dp"
                 android:fontFamily="@font/bold"
-                android:text="Preventions"
+                android:text="@string/preventions"
                 android:textColor="@color/mainText"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -423,10 +423,11 @@
 
             <TextView
                 android:id="@+id/textView14"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/medium"
-                android:text="Wash Hands"
+                android:gravity="center"
+                android:text="@string/washHand"
                 android:textColor="@color/teal_700"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="@+id/imageView12"
@@ -435,10 +436,11 @@
 
             <TextView
                 android:id="@+id/textView15"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/medium"
-                android:text="Use Masks"
+                android:gravity="center"
+                android:text="@string/useMask"
                 android:textColor="@color/teal_700"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="@+id/imageView13"
@@ -475,7 +477,7 @@
         app:headerLayout="@layout/navheader"
         app:menu="@menu/activity_main_drawer"
         android:layout_gravity="start"/>
--->
+
     </androidx.drawerlayout.widget.DrawerLayout >
 
 </androidx.constraintlayout.widget.ConstraintLayout>

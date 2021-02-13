@@ -7,9 +7,12 @@ import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -21,7 +24,7 @@ import com.levitnudi.legacytableview.LegacyTableView;
 
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.Locale;
 
 
 public class TableDataActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
@@ -31,11 +34,15 @@ public class TableDataActivity extends AppCompatActivity implements NavigationVi
     ActionBarDrawerToggle toggle;
     public static List<CovidInfoItem> itemList = new ArrayList<CovidInfoItem>();;
 
-
+    SharedPreferences langSharedPref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        langSharedPref = this.getSharedPreferences("language",Context.MODE_PRIVATE);
+        String lang = langSharedPref.getString("Language", "en");
+        setLocale(this,lang);
+
         setContentView(R.layout.activity_table_data);
 
         drawerLayout = findViewById(R.id.drawer);
@@ -51,9 +58,27 @@ public class TableDataActivity extends AppCompatActivity implements NavigationVi
 
         itemList = DataActivity.itemList;
 
+        String date = getResources().getString(R.string.date);
+        String dailtTest = getResources().getString(R.string.dailyTest);
+        String dailtCase = getResources().getString(R.string.dailyCase);
+        String dailtPatient = getResources().getString(R.string.dailyPatient);
+        String dailtDeath = getResources().getString(R.string.dailyDeaths);
+        String dailtRecovered = getResources().getString(R.string.dailyRecovered);
+        String totalTest = getResources().getString(R.string.totalTest);
+        String totalCase = getResources().getString(R.string.totalCases);
+        String totalDeath = getResources().getString(R.string.totalDeaths);
+        String totalRecovered = getResources().getString(R.string.totalRecovered);
+        String heavyPatients = getResources().getString(R.string.heavyPatients);
+        String pneumoniaRate = getResources().getString(R.string.pneumoniaRate);
+        String bedFilling = getResources().getString(R.string.bedFilling);
+        String intensiveRate = getResources().getString(R.string.intensiveRate);
+        String ventilatorRate = getResources().getString(R.string.ventilatorRate);
+        String detectionTime = getResources().getString(R.string.detectionRate);
+        String filationRate = getResources().getString(R.string.filationRate);
+
 
         //set table title labels
-        LegacyTableView.insertLegacyTitle("Date", "Daily Test", "Daily Case", "Daily Patient", "Daily Death", "Daily Recovered", "Total Test", "Total Case", "Total Death", "Total Recovered", "Heavy Patients","Rate of Pneumonia", "Bed Filling Ratio","Intensive Occupancy Rate", "Ventilator Rate", "Detection Time", "Filation Rate");
+        LegacyTableView.insertLegacyTitle(date, dailtTest, dailtCase, dailtPatient, dailtDeath, dailtRecovered, totalTest, totalCase, totalDeath, totalRecovered, heavyPatients,pneumoniaRate, bedFilling,intensiveRate, ventilatorRate, detectionTime, filationRate);
         //set table contents as string arrays
         for (CovidInfoItem item : itemList) {
             LegacyTableView.insertLegacyContent(item.getDate(),item.getDailyTest(),item.getDailyCase(),item.getDailyPatient(),item.getDailyDeath(),item.getDailyRecovered(),
@@ -136,6 +161,15 @@ public class TableDataActivity extends AppCompatActivity implements NavigationVi
         drawerLayout.openDrawer(Gravity.LEFT);
     }
 
+
+    public void setLocale(Activity activity, String lang){
+        Locale locale = new Locale(lang);
+        Locale.setDefault(locale);
+        Resources resources = activity.getResources();
+        Configuration config = resources.getConfiguration();
+        config.setLocale(locale);
+        resources.updateConfiguration(config, resources.getDisplayMetrics());
+    }
 
 
 }

@@ -9,9 +9,11 @@ import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
@@ -36,6 +38,7 @@ import com.levitnudi.legacytableview.LegacyTableView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import de.codecrafters.tableview.TableView;
 import de.codecrafters.tableview.colorizers.TableDataRowColorizer;
@@ -60,10 +63,11 @@ public class VaccineActivity extends AppCompatActivity implements NavigationView
     public static List<VaccineItem> itemList = new ArrayList<VaccineItem>();
 
     TableView<String[]> tableView;
-    private static final String[] TABLE_HEADERS = { "#","City",  "Vaccinated"};
+    private static String[] TABLE_HEADERS;
     private static final String[][] DATA_TO_SHOW = new String[81][3];
 
     SharedPreferences sharedPref;
+    SharedPreferences langSharedPref;
 
     public VectorDrawableCompat.VFullPath pathNew;
     public VectorDrawableCompat.VFullPath mapPath;
@@ -71,7 +75,13 @@ public class VaccineActivity extends AppCompatActivity implements NavigationView
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        langSharedPref = this.getSharedPreferences("language",Context.MODE_PRIVATE);
+        String lang = langSharedPref.getString("Language", "en");
+        setLocale(this,lang);
+
         setContentView(R.layout.activity_vaccine);
+
+        TABLE_HEADERS = new String[]{"#", getResources().getString(R.string.cityText), getResources().getString(R.string.vaccinated)};
 
         drawerLayout = findViewById(R.id.drawer);
         navigationView = findViewById(R.id.navmenu);
@@ -214,6 +224,16 @@ public class VaccineActivity extends AppCompatActivity implements NavigationView
     public void navDraverClicked(View v)
     {
         drawerLayout.openDrawer(Gravity.LEFT);
+    }
+
+
+    public void setLocale(Activity activity, String lang){
+        Locale locale = new Locale(lang);
+        Locale.setDefault(locale);
+        Resources resources = activity.getResources();
+        Configuration config = resources.getConfiguration();
+        config.setLocale(locale);
+        resources.updateConfiguration(config, resources.getDisplayMetrics());
     }
 
 }

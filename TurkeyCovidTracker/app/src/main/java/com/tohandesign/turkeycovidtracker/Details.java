@@ -7,9 +7,12 @@ import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
@@ -58,11 +61,15 @@ public class Details extends AppCompatActivity implements NavigationView.OnNavig
     NavigationView navigationView;
     ActionBarDrawerToggle toggle;
 
-
+    SharedPreferences langSharedPref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        langSharedPref = this.getSharedPreferences("language",Context.MODE_PRIVATE);
+        String lang = langSharedPref.getString("Language", "en");
+        setLocale(this,lang);
+
         setContentView(R.layout.activity_details);
 
         mainCountText = (TextView) findViewById(R.id.mainCount);
@@ -114,7 +121,7 @@ public class Details extends AppCompatActivity implements NavigationView.OnNavig
         switch (Details.clicked) {
             case 1:
                 mainCountText.setText(covidItem.getTotalCase());
-                mainText.setText("Total Cases");
+                mainText.setText(getResources().getString(R.string.totalCases));
 
                 mainRate = getRate(itemList.get(0).getTotalCase(),itemList.get(1).getTotalCase());
 
@@ -131,8 +138,7 @@ public class Details extends AppCompatActivity implements NavigationView.OnNavig
 
             case 2:
                 mainCountText.setText(covidItem.getTotalDeath());
-                mainText.setText("Total Deaths");
-
+                mainText.setText(getResources().getString(R.string.totalDeaths));
 
                 mainRate = getRate(itemList.get(0).getTotalDeath(),itemList.get(1).getTotalDeath());
 
@@ -145,8 +151,7 @@ public class Details extends AppCompatActivity implements NavigationView.OnNavig
                 break;
             case 3:
                 mainCountText.setText(covidItem.getTotalRecovered());
-                mainText.setText("Total Recovered");
-
+                mainText.setText(getResources().getString(R.string.totalRecovered));
 
                 mainRate = getRate(itemList.get(0).getTotalRecovered(),itemList.get(1).getTotalRecovered());
 
@@ -160,8 +165,7 @@ public class Details extends AppCompatActivity implements NavigationView.OnNavig
 
             case 4:
                 mainCountText.setText(covidItem.getDailyCase());
-                mainText.setText("Daily Cases");
-
+                mainText.setText(getResources().getString(R.string.newCase));
 
                 mainRate = getRate(itemList.get(0).getDailyCase(),itemList.get(1).getDailyCase());
 
@@ -175,8 +179,7 @@ public class Details extends AppCompatActivity implements NavigationView.OnNavig
 
             case 5:
                 mainCountText.setText(covidItem.getDailyTest());
-                mainText.setText("Daily Test");
-
+                mainText.setText(getResources().getString(R.string.dailyTest));
 
 
                 mainRate = getRate(itemList.get(0).getDailyTest(),itemList.get(1).getDailyTest());
@@ -191,8 +194,7 @@ public class Details extends AppCompatActivity implements NavigationView.OnNavig
 
             case 6:
                 mainCountText.setText(covidItem.getDailyPatient());
-                mainText.setText("Daily Patient");
-
+                mainText.setText(getResources().getString(R.string.dailyPatient));
 
                 mainRate = getRate(itemList.get(0).getDailyPatient(),itemList.get(1).getDailyPatient());
 
@@ -206,8 +208,7 @@ public class Details extends AppCompatActivity implements NavigationView.OnNavig
 
             case 7:
                 mainCountText.setText(covidItem.getDailyDeath());
-                mainText.setText("Daily Deaths");
-
+                mainText.setText(getResources().getString(R.string.dailyDeaths));
 
 
                 mainRate = getRate(itemList.get(0).getDailyDeath(),itemList.get(1).getDailyDeath());
@@ -222,8 +223,7 @@ public class Details extends AppCompatActivity implements NavigationView.OnNavig
 
             case 8:
                 mainCountText.setText(covidItem.getDailyRecovered());
-                mainText.setText("Daily Recovered");
-
+                mainText.setText(getResources().getString(R.string.dailyRecovered));
 
 
                 mainRate = getRate(itemList.get(0).getDailyRecovered(),itemList.get(1).getDailyRecovered());
@@ -238,8 +238,7 @@ public class Details extends AppCompatActivity implements NavigationView.OnNavig
 
             case 9:
                 mainCountText.setText(covidItem.getTotalTest());
-                mainText.setText("Total Tests");
-
+                mainText.setText(getResources().getString(R.string.totalTest));
 
                 mainRate = getRate(itemList.get(0).getTotalTest(),itemList.get(1).getTotalTest());
 
@@ -253,8 +252,7 @@ public class Details extends AppCompatActivity implements NavigationView.OnNavig
 
             case 10:
                 mainCountText.setText(covidItem.getHeavyPatients());
-                mainText.setText("Heavy Patients");
-
+                mainText.setText(getResources().getString(R.string.heavyPatients));
 
 
                 mainRate = getRate(itemList.get(0).getHeavyPatients(),itemList.get(1).getHeavyPatients());
@@ -271,8 +269,7 @@ public class Details extends AppCompatActivity implements NavigationView.OnNavig
 
             case 11:
                 mainCountText.setText(covidItem.getZaturreRate());
-                mainText.setText("Rate of Pneumonia");
-
+                mainText.setText(getResources().getString(R.string.pneumoniaRate));
 
                 mainRate = getRate(itemList.get(0).getZaturreRate(),itemList.get(1).getZaturreRate());
 
@@ -287,7 +284,7 @@ public class Details extends AppCompatActivity implements NavigationView.OnNavig
 
             case 12:
                 mainCountText.setText(covidItem.getBedOccupancy());
-                mainText.setText("Bed Filling Ratio");
+                mainText.setText(getResources().getString(R.string.bedFilling));
 
                 mainRate = getRate(itemList.get(0).getBedOccupancy(),itemList.get(1).getBedOccupancy());
 
@@ -302,8 +299,7 @@ public class Details extends AppCompatActivity implements NavigationView.OnNavig
 
             case 13:
                 mainCountText.setText(covidItem.getIntensiveOccupancyRate());
-                mainText.setText("Intensive Care Occupancy Rate");
-
+                mainText.setText(getResources().getString(R.string.intensiveRate));
 
                 mainRate = getRate(itemList.get(0).getIntensiveOccupancyRate(),itemList.get(1).getIntensiveOccupancyRate());
 
@@ -317,8 +313,7 @@ public class Details extends AppCompatActivity implements NavigationView.OnNavig
 
             case 14:
                 mainCountText.setText(covidItem.getVentilatorRate());
-                mainText.setText("Ventilator Rate");
-
+                mainText.setText(getResources().getString(R.string.ventilatorRate));
 
                 mainRate = getRate(itemList.get(0).getVentilatorRate(),itemList.get(1).getVentilatorRate());
 
@@ -332,9 +327,8 @@ public class Details extends AppCompatActivity implements NavigationView.OnNavig
 
 
             case 15:
-                mainCountText.setText(covidItem.getDetectionTime() + " Hours");
-                mainText.setText("Detection Time");
-
+                mainCountText.setText(covidItem.getDetectionTime() + " " + getResources().getString(R.string.hours));
+                mainText.setText(getResources().getString(R.string.detectionRate));
 
                 mainRate = getRate(itemList.get(0).getDetectionTime(),itemList.get(1).getDetectionTime());
 
@@ -349,8 +343,7 @@ public class Details extends AppCompatActivity implements NavigationView.OnNavig
 
             case 16:
                 mainCountText.setText(covidItem.getFilationRate());
-                mainText.setText("Filation Rate");
-
+                mainText.setText(getResources().getString(R.string.filationRate));
 
                 mainRate = getRate(itemList.get(0).getFilationRate(),itemList.get(1).getFilationRate());
 
@@ -779,6 +772,15 @@ public class Details extends AppCompatActivity implements NavigationView.OnNavig
         }
     }
 
+
+    public void setLocale(Activity activity, String lang){
+        Locale locale = new Locale(lang);
+        Locale.setDefault(locale);
+        Resources resources = activity.getResources();
+        Configuration config = resources.getConfiguration();
+        config.setLocale(locale);
+        resources.updateConfiguration(config, resources.getDisplayMetrics());
+    }
 
 
 }
